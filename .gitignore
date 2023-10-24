@@ -1,0 +1,36 @@
+.vscode/*
+!.vscode/extensions.json
+node_modules
+
+*/**/__pycache__
+/flask/requirements-old.txt
+
+/mongodb
+
+/nextjs/node_modules
+/nextjs/.next
+/nextjs/coverage
+
+/nextjs/out/
+
+# production
+/nextjs/build
+
+# misc
+/nextjs/.DS_Store
+/nextjs/*.pem
+
+# debug
+/nextjs/npm-debug.log*
+/nextjs/yarn-debug.log*
+/nextjs/yarn-error.log*
+
+# local env files
+/nextjs/.env*.local
+
+# vercel
+/nextjs/.vercel
+
+# typescript
+/nextjs/*.tsbuildinfo
+# /nextjs/nextjs-env.d.ts
