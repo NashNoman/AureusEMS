@@ -7,9 +7,12 @@ export const metadata = {
 export default function Layout({ children }) {
   return (
     <html>
-      <body>
+      <body className="bg-secondary">
         <NavBar />
-        <main>{children}</main>
+        {/* TODO: Add custom functionalities to 'main' tag */}
+        <main className="flex flex-col items-center py-10 container">
+          {children}
+        </main>
       </body>
     </html>
   );
