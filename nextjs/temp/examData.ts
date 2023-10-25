@@ -61,6 +61,37 @@ const examData = {
         },
       ],
     },
+    {
+      sectionType: "tof",
+      sectionGrade: "50",
+      questions: [
+        {
+          id: 123,
+          qType: "tof",
+          btlLevel: 1,
+          question: "CPU stands for Central Processing Unit",
+        },
+        {
+          id: 321,
+          qType: "tof",
+          btlLevel: 2,
+          question: "Webcam is a type of input device.",
+        },
+        {
+          id: 45,
+          qType: "tof",
+          btlLevel: 2,
+          question:
+            "Webcam is a type of input device webcam is a type of input device webcam is a type of input device webcam is a type of input device webcam is a type of input device.",
+        },
+        {
+          id: 32,
+          qType: "tof",
+          btlLevel: 1,
+          question: "A computer only understands binary language",
+        },
+      ],
+    },
   ],
 };
 
