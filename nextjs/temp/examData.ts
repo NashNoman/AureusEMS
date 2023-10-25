@@ -15,10 +15,10 @@ const examData = {
           btLevel: 1,
           question: "What does 'CPU' stand for?",
           choices: [
-            { A: "Computer Processing Unit" },
-            { B: "Central Processing Unit" },
-            { C: "Control Processing Unit" },
-            { D: "Computing Processing Unit" },
+            { id: "A", text: "Computer Processing Unit" },
+            { id: "B", text: "Central Processing Unit" },
+            { id: "C", text: "Control Processing Unit" },
+            { id: "D", text: "Computing Processing Unit" },
           ],
           answer: "B",
         },
@@ -30,15 +30,18 @@ const examData = {
             "Which of the following is the correct definition of Computer?",
           choices: [
             {
-              A: "Computer is a machine or device that can be programmed to perform arithmetical or logic operation sequences automatically",
+              id: "A",
+              text: "Computer is a machine or device that can be programmed to perform arithmetical or logic operation sequences automatically",
             },
             {
-              B: "Computer understands only binary language which is written in the form of 0s & 1s",
+              id: "B",
+              text: "Computer understands only binary language which is written in the form of 0s & 1s",
             },
             {
-              C: "Computer is a programmable electronic device that stores, retrieves, and processes the data",
+              id: "C",
+              text: "Computer is a programmable electronic device that stores, retrieves, and processes the data",
             },
-            { D: "All of the mentioned" },
+            { id: "D", text: "All of the mentioned" },
           ],
           answer: "D",
         },
@@ -49,10 +52,10 @@ const examData = {
           question:
             "Which of the following language does the computer understand:",
           choices: [
-            { A: "Computer understands only C Language" },
-            { B: "Computer understands only Assembly Language" },
-            { C: "Computer understands only Binary Language" },
-            { D: "Computer understands only BASIC" },
+            { id: "A", text: "Computer understands only C Language" },
+            { id: "B", text: "Computer understands only Assembly Language" },
+            { id: "C", text: "Computer understands only Binary Language" },
+            { id: "D", text: "Computer understands only BASIC" },
           ],
           answer: "C",
         },
