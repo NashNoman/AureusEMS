@@ -1,6 +1,5 @@
-import {
-  BuilderAddQuestion,
-  BuilderQuestion,
+import BuilderQuestion, {
+  AddQuestionPlaceholder,
 } from "@/components/BuilderQuestion";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -19,7 +18,7 @@ export const ExamSection = ({ questions }) => {
             <BuilderQuestion question={question} qNum={id} key={question.id} />
           );
         })}
-        <BuilderAddQuestion />
+        <AddQuestionPlaceholder />
       </CardContent>
     </Card>
   );
