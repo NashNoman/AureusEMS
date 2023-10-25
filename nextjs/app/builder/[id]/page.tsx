@@ -1,4 +1,4 @@
-import { ExamSection } from "@/components/ExamSection";
+import ExamSection from "@/components/ExamSection";
 import examData from "@/temp/examData";
 
 export default function Builder() {
