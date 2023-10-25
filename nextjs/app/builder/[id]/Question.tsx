@@ -90,8 +90,8 @@ export const TrueFalseQuestion = ({ question, id, index }) => {
 
 export const AddQuestionPlaceholder = () => {
   return (
-    <div className="rounded-lg border-dashed border-2 grid items-center justify-center cursor-pointer hover:bg-slate-100 transition-all aspect-[4/2]">
-      <PlusIcon className="h-10 w-10 bg-red-100 rounded-full p-1" />
+    <div className="rounded-lg border-dashed border-2 grid items-center justify-center cursor-pointer hover:bg-slate-100 transition-all h-40">
+      <PlusIcon className="h-10 w-10 bg-slate-200 rounded-full p-1 text-slate-500" />
     </div>
   );
 };
