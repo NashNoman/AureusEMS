@@ -3,14 +3,16 @@ import examData from "@/temp/examData";
 
 export default function Builder() {
   return (
-    <>
+    <div className="flex flex-col gap-4 items-center">
       {examData.sections.map((sec) => {
-        if (sec.sectionType === "scq") {
-          return (
-            <ExamSection questions={sec.questions} key={sec.sectionType} />
-          );
-        }
+        return (
+          <ExamSection
+            questions={sec.questions}
+            type={sec.sectionType}
+            key={sec.sectionType}
+          />
+        );
       })}
-    </>
+    </div>
   );
 }
