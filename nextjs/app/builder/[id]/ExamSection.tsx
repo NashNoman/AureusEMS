@@ -1,5 +1,7 @@
-import BuilderQuestion, {
+import {
+  SingleChoiceQuestion,
   AddQuestionPlaceholder,
+  TrueFalseQuestion,
 } from "@/app/builder/[id]/Question";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -33,9 +35,9 @@ const ExamSection = ({ questions, type }) => {
 const SingleChoiceSection = ({ questions }) => {
   return (
     <>
-      {questions.map((question, id) => {
+      {questions.map((question, index) => {
         return (
-          <BuilderQuestion question={question} qNum={id} key={question.id} />
+          <SingleChoiceQuestion {...question} index={index} key={question.id} />
         );
       })}
     </>
@@ -45,16 +47,8 @@ const SingleChoiceSection = ({ questions }) => {
 const TrueFalseSection = ({ questions }) => {
   return (
     <>
-      {questions.map(({ question }, id) => {
-        return (
-          <Card key={id}>
-            <CardContent>
-              <p>{id + 1}.</p>
-              <p>{question}</p>
-              <div>T/F</div>
-            </CardContent>
-          </Card>
-        );
+      {questions.map((question, index) => {
+        return <TrueFalseQuestion {...question} index={index} />;
       })}
     </>
   );
