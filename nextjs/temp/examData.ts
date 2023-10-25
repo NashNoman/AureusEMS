@@ -28,12 +28,18 @@ const examData = {
           btLevel: 2,
           question:
             "Which of the following is the correct definition of Computer?",
-          choices: {
-            A: "Computer is a machine or device that can be programmed to perform arithmetical or logic operation sequences automatically",
-            B: "Computer understands only binary language which is written in the form of 0s & 1s",
-            C: "Computer is a programmable electronic device that stores, retrieves, and processes the data",
-            D: "All of the mentioned",
-          },
+          choices: [
+            {
+              A: "Computer is a machine or device that can be programmed to perform arithmetical or logic operation sequences automatically",
+            },
+            {
+              B: "Computer understands only binary language which is written in the form of 0s & 1s",
+            },
+            {
+              C: "Computer is a programmable electronic device that stores, retrieves, and processes the data",
+            },
+            { D: "All of the mentioned" },
+          ],
           answer: "D",
         },
         {
@@ -54,3 +60,5 @@ const examData = {
     },
   ],
 };
+
+export default examData;
