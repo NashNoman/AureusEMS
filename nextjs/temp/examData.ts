@@ -14,12 +14,12 @@ const examData = {
           qType: "sc",
           btLevel: 1,
           question: "What does 'CPU' stand for?",
-          choices: {
-            A: "Computer Processing Unit",
-            B: "Central Processing Unit",
-            C: "Control Processing Unit",
-            D: "Computing Processing Unit",
-          },
+          choices: [
+            { A: "Computer Processing Unit" },
+            { B: "Central Processing Unit" },
+            { C: "Control Processing Unit" },
+            { D: "Computing Processing Unit" },
+          ],
           answer: "B",
         },
         {
@@ -48,12 +48,12 @@ const examData = {
           btLevel: 1,
           question:
             "Which of the following language does the computer understand:",
-          choices: {
-            A: "Computer understands only C Language",
-            B: "Computer understands only Assembly Language",
-            C: "Computer understands only Binary Language",
-            D: "Computer understands only BASIC",
-          },
+          choices: [
+            { A: "Computer understands only C Language" },
+            { B: "Computer understands only Assembly Language" },
+            { C: "Computer understands only Binary Language" },
+            { D: "Computer understands only BASIC" },
+          ],
           answer: "C",
         },
       ],
