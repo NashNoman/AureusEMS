@@ -1,6 +1,6 @@
 import BuilderQuestion, {
   AddQuestionPlaceholder,
-} from "@/components/BuilderQuestion";
+} from "@/app/builder/[id]/Question";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
