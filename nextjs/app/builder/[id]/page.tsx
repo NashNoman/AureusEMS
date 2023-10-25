@@ -1,15 +1,16 @@
 import { ExamSection } from "@/components/ExamSection";
-import { BuilderQuestion } from "@/components/Question";
+import examData from "@/temp/examData";
 
 export default function Builder() {
   return (
-    <ExamSection>
-      <BuilderQuestion />
-      <BuilderQuestion />
-      <BuilderQuestion />
-      <BuilderQuestion />
-      <BuilderQuestion />
-      <BuilderQuestion />
-    </ExamSection>
+    <>
+      {examData.sections.map((sec) => {
+        if (sec.sectionType === "scq") {
+          return (
+            <ExamSection questions={sec.questions} key={sec.sectionType} />
+          );
+        }
+      })}
+    </>
   );
 }
