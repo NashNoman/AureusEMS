@@ -1,4 +1,7 @@
-import { BuilderAddQuestion, BuilderQuestion } from "@/components/Question";
+import {
+  BuilderAddQuestion,
+  BuilderQuestion,
+} from "@/components/BuilderQuestion";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
