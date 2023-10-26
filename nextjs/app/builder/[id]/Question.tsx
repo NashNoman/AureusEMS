@@ -2,7 +2,7 @@ import { SingleChoiceInput } from "@/app/builder/[id]/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { PlusIcon } from "@radix-ui/react-icons";
 
-const QuestionCard = ({ children, index }) => {
+const QuestionWrapper = ({ children, question, index }) => {
   return (
     <Card>
       <CardHeader className="flex-row items-center justify-between">
@@ -13,7 +13,10 @@ const QuestionCard = ({ children, index }) => {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="pb-10">{children}</CardContent>
+      <CardContent className="pb-10 px-10">
+        <p className="mb-7 font-semibold">{question}</p>
+        {children}
+      </CardContent>
     </Card>
   );
 };
@@ -26,8 +29,7 @@ export const SingleChoiceQuestion = ({
   index,
 }) => {
   return (
-    <QuestionCard index={index}>
-      <p className="mb-7 font-semibold">{question}</p>
+    <QuestionWrapper index={index} question={question}>
       <div className="flex flex-col gap-3">
         {choices.map((choice) => {
           return (
@@ -39,7 +41,7 @@ export const SingleChoiceQuestion = ({
           );
         })}
       </div>
-    </QuestionCard>
+    </QuestionWrapper>
   );
 };
 
@@ -47,8 +49,7 @@ export const TrueFalseQuestion = ({ question, id, index }) => {
   const cn =
     "bg-gray-200 px-20 py-2 cursor-pointer font-semibold text-gray-600 rounded-sm hover:shadow-sm transition-shadow";
   return (
-    <QuestionCard index={index}>
-      <p className="font-semibold mb-8">{question}</p>
+    <QuestionWrapper index={index} question={question}>
       <div className="flex justify-center gap-10">
         <input
           type="radio"
@@ -72,7 +73,7 @@ export const TrueFalseQuestion = ({ question, id, index }) => {
           False
         </label>
       </div>
-    </QuestionCard>
+    </QuestionWrapper>
   );
 };
 
