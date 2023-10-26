@@ -1,3 +1,4 @@
+import { SingleChoiceInput } from "@/app/builder/[id]/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { PlusIcon } from "@radix-ui/react-icons";
 
@@ -57,28 +58,8 @@ export const SingleChoiceQuestion = ({
           );
         })} */}
         {choices.map((choice) => {
-          const isChecked = choice.id === answer;
-          let labelCn = "border";
           return (
-            <label
-              htmlFor={choice.id}
-              className={`cursor-pointer hover:shadow-sm transition-shadow flex rounded-md items-center ${
-                isChecked ? "border-2 border-green-300 bg-green-50" : "border"
-              }`}
-            >
-              <input
-                type="radio"
-                name={id.toString()}
-                id={choice.id}
-                value={choice.id}
-                className="hidden"
-                checked={isChecked}
-              />
-              <span className="font-semibold py-3 px-4 bg-gray-500 rounded-l-md bg-opacity-20">
-                {choice.id}
-              </span>
-              <span className="mx-3">{choice.text}</span>
-            </label>
+            <SingleChoiceInput {...choice} isChecked={choice.id === answer} />
           );
         })}
       </div>
