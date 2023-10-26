@@ -31,7 +31,11 @@ export const SingleChoiceQuestion = ({
       <div className="flex flex-col gap-3">
         {choices.map((choice) => {
           return (
-            <SingleChoiceInput {...choice} isChecked={choice.id === answer} />
+            <SingleChoiceInput
+              {...choice}
+              qid={id}
+              isChecked={choice.id === answer}
+            />
           );
         })}
       </div>
