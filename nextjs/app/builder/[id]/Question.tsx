@@ -18,24 +18,6 @@ const QuestionCard = ({ children, index }) => {
   );
 };
 
-// const BuilderQuestion = ({ question, qNum }) => {
-//   return (
-//     <Card>
-//       <CardHeader className="flex-row items-center justify-between">
-//         <h3 className="font-bold text-xl">{qNum + 1}</h3>
-//         <div>
-//           <div className="bg-red-200 text-red-400 rounded-full font-bold text-center inline-block w-5 text-sm">
-//             <p>C</p>
-//           </div>
-//         </div>
-//       </CardHeader>
-//       <CardContent className="pb-10">
-//         <SingleChoiceQuestion {...question} />
-//       </CardContent>
-//     </Card>
-//   );
-// };
-
 export const SingleChoiceQuestion = ({
   question,
   choices,
@@ -47,16 +29,6 @@ export const SingleChoiceQuestion = ({
     <QuestionCard index={index}>
       <p className="mb-7 font-semibold">{question}</p>
       <div className="flex flex-col gap-3">
-        {/* {choices.map((choice) => {
-          return (
-            <div className="flex gap-3 border p-3 rounded-lg hover:shadow-md cursor-pointer transition-shadow">
-              <span className="text-secondary-foreground font-bold">
-                {choice.id}
-              </span>
-              <p>{choice.text}</p>
-            </div>
-          );
-        })} */}
         {choices.map((choice) => {
           return (
             <SingleChoiceInput {...choice} isChecked={choice.id === answer} />
@@ -107,5 +79,3 @@ export const AddQuestionPlaceholder = () => {
     </div>
   );
 };
-
-// export default BuilderQuestion;
