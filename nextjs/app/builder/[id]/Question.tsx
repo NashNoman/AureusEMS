@@ -35,12 +35,18 @@ const QuestionCard = ({ children, index }) => {
 //   );
 // };
 
-export const SingleChoiceQuestion = ({ question, choices, index }) => {
+export const SingleChoiceQuestion = ({
+  question,
+  choices,
+  answer,
+  id,
+  index,
+}) => {
   return (
     <QuestionCard index={index}>
       <p className="mb-7 font-semibold">{question}</p>
       <div className="flex flex-col gap-3">
-        {choices.map((choice) => {
+        {/* {choices.map((choice) => {
           return (
             <div className="flex gap-3 border p-3 rounded-lg hover:shadow-md cursor-pointer transition-shadow">
               <span className="text-secondary-foreground font-bold">
@@ -48,6 +54,31 @@ export const SingleChoiceQuestion = ({ question, choices, index }) => {
               </span>
               <p>{choice.text}</p>
             </div>
+          );
+        })} */}
+        {choices.map((choice) => {
+          const isChecked = choice.id === answer;
+          let labelCn = "border";
+          return (
+            <label
+              htmlFor={choice.id}
+              className={`cursor-pointer hover:shadow-sm transition-shadow flex rounded-md items-center ${
+                isChecked ? "border-2 border-green-300 bg-green-50" : "border"
+              }`}
+            >
+              <input
+                type="radio"
+                name={id.toString()}
+                id={choice.id}
+                value={choice.id}
+                className="hidden"
+                checked={isChecked}
+              />
+              <span className="font-semibold py-3 px-4 bg-gray-500 rounded-l-md bg-opacity-20">
+                {choice.id}
+              </span>
+              <span className="mx-3">{choice.text}</span>
+            </label>
           );
         })}
       </div>
