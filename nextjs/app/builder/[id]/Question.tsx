@@ -26,6 +26,7 @@ export const SingleChoiceQuestion = ({
   choices,
   answer,
   id,
+  handleInput,
   index,
 }) => {
   return (
@@ -36,7 +37,9 @@ export const SingleChoiceQuestion = ({
             <SingleChoiceInput
               {...choice}
               qid={id}
+              handleInput={handleInput}
               isChecked={choice.id === answer}
+              key={choice.id}
             />
           );
         })}
@@ -45,9 +48,13 @@ export const SingleChoiceQuestion = ({
   );
 };
 
-export const TrueFalseQuestion = ({ question, id, index }) => {
+export const TrueFalseQuestion = ({ question, answer, id, index }) => {
+  // const [selectedAnswer, setSelectedAnswer] = useState<number>(answer);
+
   const cn =
     "bg-gray-200 px-20 py-2 cursor-pointer font-semibold text-gray-600 rounded-sm hover:shadow-sm transition-shadow";
+  // console.log(answer);
+
   return (
     <QuestionWrapper index={index} question={question}>
       <div className="flex justify-center gap-10">
@@ -56,18 +63,20 @@ export const TrueFalseQuestion = ({ question, id, index }) => {
           name={id}
           value={1}
           id={id + "t"}
-          className="hidden"
+          className=""
+          // checked={true}
         />
         <label htmlFor={id + "t"} className={cn}>
           True
         </label>
-
         <input
           type="radio"
           name={id}
-          value={1}
+          value={0}
           id={id + "f"}
-          className="hidden"
+          className=""
+          // checked={false}
+          // checked={!selectedAnswer}
         />
         <label htmlFor={id + "f"} className={cn}>
           False

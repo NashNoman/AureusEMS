@@ -1,10 +1,14 @@
+"use client";
+
 import {
   SingleChoiceQuestion,
   AddQuestionPlaceholder,
   TrueFalseQuestion,
 } from "@/app/builder/[id]/Question";
+import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 
 const ExamSection = ({ questions, type }) => {
   let Section;
@@ -33,11 +37,27 @@ const ExamSection = ({ questions, type }) => {
 };
 
 const SingleChoiceSection = ({ questions }) => {
+  const [singleQuestions, setSingleQuestions] = useState([...questions]);
+
+  const handleInput = (id, value) => {
+    setSingleQuestions((state) => {
+      const oldQuestions = [...state];
+      const questionId = state.findIndex((q) => q.id === id);
+      oldQuestions[questionId].answer = value;
+      return oldQuestions;
+    });
+  };
+
   return (
     <>
-      {questions.map((question, index) => {
+      {singleQuestions.map((question, index) => {
         return (
-          <SingleChoiceQuestion {...question} index={index} key={question.id} />
+          <SingleChoiceQuestion
+            {...question}
+            handleInput={handleInput}
+            index={index}
+            key={question.id}
+          />
         );
       })}
     </>
@@ -48,7 +68,9 @@ const TrueFalseSection = ({ questions }) => {
   return (
     <>
       {questions.map((question, index) => {
-        return <TrueFalseQuestion {...question} index={index} />;
+        return (
+          <TrueFalseQuestion {...question} index={index} key={question.id} />
+        );
       })}
     </>
   );

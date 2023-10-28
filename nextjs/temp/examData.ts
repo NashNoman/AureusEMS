@@ -70,14 +70,14 @@ const examData = {
           qType: "tof",
           btlLevel: 1,
           question: "CPU stands for Central Processing Unit",
-          answer: true,
+          answer: 1,
         },
         {
           id: 321,
           qType: "tof",
           btlLevel: 2,
           question: "Webcam is a type of output device.",
-          answer: false,
+          answer: 0,
         },
         {
           id: 45,
@@ -85,14 +85,14 @@ const examData = {
           btlLevel: 2,
           question:
             "Webcam is a type of input device webcam is a type of input device webcam is a type of input device webcam is a type of input device webcam is a type of input device.",
-          answer: false,
+          answer: 0,
         },
         {
           id: 32,
           qType: "tof",
           btlLevel: 1,
           question: "A computer only understands binary language",
-          answer: true,
+          answer: 1,
         },
       ],
     },
