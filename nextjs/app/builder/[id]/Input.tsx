@@ -9,7 +9,7 @@ export const SingleChoiceInput = ({
   handleInput,
   qid,
 }: {
-  id: number;
+  id: string;
   text: string;
   isChecked: boolean;
   handleInput: (id: number, value: string) => void;

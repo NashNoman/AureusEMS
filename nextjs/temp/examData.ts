@@ -1,4 +1,4 @@
-const examData = {
+const examData: ExamData = {
   courseTitle: "Introduction to Computers",
   courseCode: "CSCI100",
   examId: 123,
@@ -63,26 +63,26 @@ const examData = {
     },
     {
       sectionType: "tof",
-      sectionGrade: "50",
+      sectionGrade: 50,
       questions: [
         {
           id: 123,
           qType: "tof",
-          btlLevel: 1,
+          btLevel: 1,
           question: "CPU stands for Central Processing Unit",
           answer: 1,
         },
         {
           id: 321,
           qType: "tof",
-          btlLevel: 2,
+          btLevel: 2,
           question: "Webcam is a type of output device.",
           answer: 0,
         },
         {
           id: 45,
           qType: "tof",
-          btlLevel: 2,
+          btLevel: 2,
           question:
             "Webcam is a type of input device webcam is a type of input device webcam is a type of input device webcam is a type of input device webcam is a type of input device.",
           answer: 0,
@@ -90,7 +90,7 @@ const examData = {
         {
           id: 32,
           qType: "tof",
-          btlLevel: 1,
+          btLevel: 1,
           question: "A computer only understands binary language",
           answer: 1,
         },
