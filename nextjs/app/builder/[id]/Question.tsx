@@ -2,14 +2,19 @@ import { SingleChoiceInput } from "@/app/builder/[id]/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { ReactNode } from "react";
+import ContentEditable from "react-contenteditable";
 
 const QuestionWrapper = ({
   children,
   question,
+  id,
+  handleQuestion,
   index,
 }: {
   children: ReactNode;
   question: string;
+  id: number;
+  handleQuestion: (id: number, text: string) => void;
   index: number;
 }) => {
   return (
@@ -23,7 +28,11 @@ const QuestionWrapper = ({
         </div>
       </CardHeader>
       <CardContent className="pb-10 px-10">
-        <p className="mb-7 font-semibold">{question}</p>
+        <ContentEditable
+          className="mb-6"
+          html={question}
+          onChange={(e) => handleQuestion(id, e.target.value)}
+        />
         {children}
       </CardContent>
     </Card>
@@ -36,6 +45,7 @@ export const SingleChoiceQuestion = ({
   answer,
   id,
   handleInput,
+  handleQuestion,
   index,
 }: {
   question: string;
@@ -43,10 +53,16 @@ export const SingleChoiceQuestion = ({
   answer: string;
   id: number;
   handleInput: (id: number, value: string) => void;
+  handleQuestion: (id: number, text: string) => void;
   index: number;
 }) => {
   return (
-    <QuestionWrapper index={index} question={question}>
+    <QuestionWrapper
+      index={index}
+      id={id}
+      handleQuestion={handleQuestion}
+      question={question}
+    >
       <div className="flex flex-col gap-3">
         {choices.map((choice) => {
           return (
@@ -67,11 +83,13 @@ export const SingleChoiceQuestion = ({
 export const TrueFalseQuestion = ({
   question,
   answer,
+  handleQuestion,
   id,
   index,
 }: {
   question: string;
   answer: 1 | 0;
+  handleQuestion: (id: number, text: string) => void;
   id: number;
   index: number;
 }) => {
@@ -82,7 +100,12 @@ export const TrueFalseQuestion = ({
   // console.log(answer);
 
   return (
-    <QuestionWrapper index={index} question={question}>
+    <QuestionWrapper
+      index={index}
+      id={id}
+      handleQuestion={handleQuestion}
+      question={question}
+    >
       <div className="flex justify-center gap-10">
         <input
           type="radio"

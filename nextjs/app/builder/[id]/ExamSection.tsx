@@ -43,6 +43,17 @@ export const SingleChoiceSection = ({
     });
   };
 
+  const handleQuestion = (id: number, text: string) => {
+    setSingleQuestions((state) => {
+      const oldQuestions = [...state];
+      const questionId = state.findIndex((q) => q.id === id);
+      oldQuestions[questionId].question = text;
+      console.log(text);
+
+      return oldQuestions;
+    });
+  };
+
   return (
     <ExamSection>
       {singleQuestions.map((question, index) => {
@@ -50,6 +61,7 @@ export const SingleChoiceSection = ({
           <SingleChoiceQuestion
             {...question}
             handleInput={handleInput}
+            handleQuestion={handleQuestion}
             index={index}
             key={question.id}
           />
@@ -64,11 +76,17 @@ export const TrueFalseSection = ({
 }: {
   questions: ToFQuestion[];
 }) => {
+  const handleQuestion = (id: number, text: string) => {};
   return (
     <ExamSection>
       {questions.map((question, index) => {
         return (
-          <TrueFalseQuestion {...question} index={index} key={question.id} />
+          <TrueFalseQuestion
+            {...question}
+            handleQuestion={handleQuestion}
+            index={index}
+            key={question.id}
+          />
         );
       })}
     </ExamSection>
