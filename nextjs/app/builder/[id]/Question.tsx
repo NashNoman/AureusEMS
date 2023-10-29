@@ -8,13 +8,13 @@ const QuestionWrapper = ({
   children,
   question,
   id,
-  handleQuestion,
+  onChange,
   index,
 }: {
   children: ReactNode;
   question: string;
   id: number;
-  handleQuestion: (id: number, text: string) => void;
+  onChange: (id: number, text: string) => void;
   index: number;
 }) => {
   return (
@@ -31,7 +31,7 @@ const QuestionWrapper = ({
         <ContentEditable
           className="mb-6"
           html={question}
-          onChange={(e) => handleQuestion(id, e.target.value)}
+          onChange={(e) => onChange(id, e.target.value)}
         />
         {children}
       </CardContent>
@@ -40,28 +40,28 @@ const QuestionWrapper = ({
 };
 
 export const SingleChoiceQuestion = ({
-  question,
+  text,
   choices,
   answer,
   id,
-  handleInput,
-  handleQuestion,
+  onAnswerChange,
+  onQuestionChange,
   index,
 }: {
-  question: string;
+  text: string;
   choices: SC[];
   answer: string;
   id: number;
-  handleInput: (id: number, value: string) => void;
-  handleQuestion: (id: number, text: string) => void;
+  onAnswerChange: (id: number, value: string) => void;
+  onQuestionChange: (id: number, text: string) => void;
   index: number;
 }) => {
   return (
     <QuestionWrapper
       index={index}
       id={id}
-      handleQuestion={handleQuestion}
-      question={question}
+      onChange={onQuestionChange}
+      question={text}
     >
       <div className="flex flex-col gap-3">
         {choices.map((choice) => {
@@ -69,7 +69,7 @@ export const SingleChoiceQuestion = ({
             <SingleChoiceInput
               {...choice}
               qid={id}
-              handleInput={handleInput}
+              onChange={onAnswerChange}
               isChecked={choice.id.toString() === answer}
               key={choice.id}
             />
@@ -81,30 +81,27 @@ export const SingleChoiceQuestion = ({
 };
 
 export const TrueFalseQuestion = ({
-  question,
+  text,
   answer,
   handleQuestion,
   id,
   index,
 }: {
-  question: string;
+  text: string;
   answer: 1 | 0;
   handleQuestion: (id: number, text: string) => void;
   id: number;
   index: number;
 }) => {
-  // const [selectedAnswer, setSelectedAnswer] = useState<number>(answer);
-
   const cn =
     "bg-gray-200 px-20 py-2 cursor-pointer font-semibold text-gray-600 rounded-sm hover:shadow-sm transition-shadow";
-  // console.log(answer);
 
   return (
     <QuestionWrapper
       index={index}
       id={id}
-      handleQuestion={handleQuestion}
-      question={question}
+      onChange={handleQuestion}
+      question={text}
     >
       <div className="flex justify-center gap-10">
         <input

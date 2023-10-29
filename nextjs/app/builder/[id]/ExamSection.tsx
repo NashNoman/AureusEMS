@@ -7,7 +7,10 @@ import {
 } from "@/app/builder/[id]/Question";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { singleChoiceActions } from "@/redux/builder/singleChoice-slice";
+import { trueFalseActions } from "@/redux/builder/trueFalse-slice";
 import { ReactNode, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const ExamSection = ({ children }: { children: ReactNode }) => {
   return (
@@ -25,43 +28,30 @@ const ExamSection = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const SingleChoiceSection = ({
-  questions,
-}: {
-  questions: SCQuestion[];
-}) => {
-  const [singleQuestions, setSingleQuestions] = useState<SCQuestion[]>([
-    ...questions,
-  ]);
-
-  const handleInput = (id: number, value: string) => {
-    setSingleQuestions((state) => {
-      const oldQuestions = [...state];
-      const questionId = state.findIndex((q) => q.id === id);
-      oldQuestions[questionId].answer = value;
-      return oldQuestions;
-    });
-  };
+export const SingleChoiceSection = () => {
+  const questions = useSelector(
+    (state: RootState) => state.singleChoice.questions
+  );
+  const dispatch = useDispatch();
 
   const handleQuestion = (id: number, text: string) => {
-    setSingleQuestions((state) => {
-      const oldQuestions = [...state];
-      const questionId = state.findIndex((q) => q.id === id);
-      oldQuestions[questionId].question = text;
-      console.log(text);
-
-      return oldQuestions;
-    });
+    dispatch(singleChoiceActions.setQuestion({ id, text }));
   };
+
+  const handleAnswer = (id: number, value: string) => {
+    dispatch(singleChoiceActions.setAnswer({ id, value }));
+  };
+
+  console.log(questions);
 
   return (
     <ExamSection>
-      {singleQuestions.map((question, index) => {
+      {questions.map((question, index) => {
         return (
           <SingleChoiceQuestion
             {...question}
-            handleInput={handleInput}
-            handleQuestion={handleQuestion}
+            onQuestionChange={handleQuestion}
+            onAnswerChange={handleAnswer}
             index={index}
             key={question.id}
           />
@@ -71,12 +61,16 @@ export const SingleChoiceSection = ({
   );
 };
 
-export const TrueFalseSection = ({
-  questions,
-}: {
-  questions: ToFQuestion[];
-}) => {
-  const handleQuestion = (id: number, text: string) => {};
+export const TrueFalseSection = () => {
+  const questions = useSelector(
+    (state: RootState) => state.trueFalse.questions
+  );
+  const dispatch = useDispatch();
+
+  const handleQuestion = (id: number, value: string) => {
+    dispatch(trueFalseActions.setQuestion({ id, value }));
+  };
+
   return (
     <ExamSection>
       {questions.map((question, index) => {

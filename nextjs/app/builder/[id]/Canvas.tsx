@@ -5,24 +5,22 @@ import {
   TrueFalseSection,
 } from "@/app/builder/[id]/ExamSection";
 import examData from "@/temp/examData";
+import { useSelector } from "react-redux";
+
+const sectionType = new Map<string, () => JSX.Element>([
+  ["scq", SingleChoiceSection],
+  ["tof", TrueFalseSection],
+]);
 
 export default function Canvas() {
+  const sections = useSelector((state: RootState) => state.exam.sections);
+
   return (
     <main className="flex flex-col items-center py-10 gap-4 container">
-      {examData.sections.map((sec: Section) => {
-        if (sec.sectionType === "scq")
-          return (
-            <SingleChoiceSection
-              questions={sec.questions as SCQuestion[]}
-              key={sec.sectionType}
-            />
-          );
-        return (
-          <TrueFalseSection
-            questions={sec.questions as ToFQuestion[]}
-            key={sec.sectionType}
-          />
-        );
+      {sections.map((sec: string) => {
+        const ExamSection = sectionType.get(sec);
+        if (typeof ExamSection === "undefined") return;
+        return <ExamSection key={sec} />;
       })}
     </main>
   );

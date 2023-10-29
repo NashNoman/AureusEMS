@@ -7,6 +7,7 @@ const examSlice = createSlice({
     examId: 123,
     examPercentage: 10,
     examType: "test",
+    sections: ["scq", "tof"],
   },
   name: "examInfo",
   reducers: {},

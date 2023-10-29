@@ -4,7 +4,7 @@ interface SCQuestion {
   id: number;
   qType: string;
   btLevel: number;
-  question: string;
+  text: string;
   choices: SC[];
   answer: string;
 }
@@ -19,7 +19,7 @@ interface ToFQuestion {
   id: number;
   qType: "tof";
   btLevel: number;
-  question: string;
+  text: string;
   answer: 1 | 0;
 }
 
@@ -35,11 +35,17 @@ type Section = {
   questions: SCQuestion[] | ToFQuestion[];
 };
 
-type ExamData = {
+type ExamInfo = {
   courseTitle: string;
   courseCode: string;
   examId: number;
   examPercentage: number;
   examType: string;
-  sections: Array<Section>;
+  sections: string[];
+};
+
+type RootState = {
+  exam: ExamInfo;
+  singleChoice: SCSection;
+  trueFalse: ToFSection;
 };

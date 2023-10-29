@@ -6,17 +6,15 @@ export const SingleChoiceInput = ({
   id,
   text,
   isChecked,
-  handleInput,
+  onChange,
   qid,
 }: {
   id: string;
   text: string;
   isChecked: boolean;
-  handleInput: (id: number, value: string) => void;
+  onChange: (id: number, value: string) => void;
   qid: number;
 }) => {
-  const [checked, setChecked] = useState<boolean>(isChecked);
-
   const inputId = id.toString() + qid.toString();
   return (
     <label
@@ -32,8 +30,8 @@ export const SingleChoiceInput = ({
         value={id}
         className="hidden"
         // checked={isChecked}
-        defaultChecked={checked}
-        onChange={() => handleInput(qid, id.toString())}
+        defaultChecked={isChecked}
+        onChange={() => onChange(qid, id.toString())}
       />
       <span className="font-semibold py-3 px-4 bg-gray-500 bg-opacity-20">
         {id}
