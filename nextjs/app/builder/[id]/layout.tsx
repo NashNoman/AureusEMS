@@ -10,9 +10,7 @@ export default function Layout({ children }) {
       <body className="bg-secondary">
         <NavBar />
         {/* TODO: Add custom functionalities to 'main' tag */}
-        <main className="flex flex-col items-center py-10 container">
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );

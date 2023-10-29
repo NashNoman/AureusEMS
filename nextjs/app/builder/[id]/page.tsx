@@ -3,7 +3,7 @@ import examData from "@/temp/examData";
 
 export default function Builder() {
   return (
-    <div className="flex flex-col gap-4 items-center">
+    <main className="flex flex-col items-center py-10 gap-4 container">
       {examData.sections.map((sec) => {
         return (
           <ExamSection
@@ -13,6 +13,6 @@ export default function Builder() {
           />
         );
       })}
-    </div>
+    </main>
   );
 }
