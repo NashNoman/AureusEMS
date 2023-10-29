@@ -7,19 +7,9 @@ import {
 } from "@/app/builder/[id]/Question";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
-const ExamSection = ({ questions, type }) => {
-  let Section;
-
-  switch (type) {
-    case "scq":
-      Section = SingleChoiceSection;
-      break;
-    case "tof":
-      Section = TrueFalseSection;
-  }
-
+const ExamSection = ({ children }: { children: ReactNode }) => {
   return (
     <Card className="w-[60%]">
       {/* Section of an exam (e.g., Single Choice) */}
@@ -28,17 +18,23 @@ const ExamSection = ({ questions, type }) => {
       </CardHeader>
       <Separator />
       <CardContent className="bg-primary-foreground rounded-lg pt-5 flex flex-col gap-4">
-        <Section questions={questions} />
+        {children}
         <AddQuestionPlaceholder />
       </CardContent>
     </Card>
   );
 };
 
-const SingleChoiceSection = ({ questions }) => {
-  const [singleQuestions, setSingleQuestions] = useState([...questions]);
+export const SingleChoiceSection = ({
+  questions,
+}: {
+  questions: SCQuestion[];
+}) => {
+  const [singleQuestions, setSingleQuestions] = useState<SCQuestion[]>([
+    ...questions,
+  ]);
 
-  const handleInput = (id, value) => {
+  const handleInput = (id: number, value: string) => {
     setSingleQuestions((state) => {
       const oldQuestions = [...state];
       const questionId = state.findIndex((q) => q.id === id);
@@ -48,7 +44,7 @@ const SingleChoiceSection = ({ questions }) => {
   };
 
   return (
-    <>
+    <ExamSection>
       {singleQuestions.map((question, index) => {
         return (
           <SingleChoiceQuestion
@@ -59,20 +55,22 @@ const SingleChoiceSection = ({ questions }) => {
           />
         );
       })}
-    </>
+    </ExamSection>
   );
 };
 
-const TrueFalseSection = ({ questions }) => {
+export const TrueFalseSection = ({
+  questions,
+}: {
+  questions: ToFQuestion[];
+}) => {
   return (
-    <>
+    <ExamSection>
       {questions.map((question, index) => {
         return (
           <TrueFalseQuestion {...question} index={index} key={question.id} />
         );
       })}
-    </>
+    </ExamSection>
   );
 };
-
-export default ExamSection;

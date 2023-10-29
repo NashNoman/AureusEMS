@@ -1,8 +1,17 @@
 import { SingleChoiceInput } from "@/app/builder/[id]/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { PlusIcon } from "@radix-ui/react-icons";
+import { ReactNode } from "react";
 
-const QuestionWrapper = ({ children, question, index }) => {
+const QuestionWrapper = ({
+  children,
+  question,
+  index,
+}: {
+  children: ReactNode;
+  question: string;
+  index: number;
+}) => {
   return (
     <Card>
       <CardHeader className="flex-row items-center justify-between">
@@ -28,6 +37,13 @@ export const SingleChoiceQuestion = ({
   id,
   handleInput,
   index,
+}: {
+  question: string;
+  choices: SC[];
+  answer: string;
+  id: number;
+  handleInput: (id: number, value: string) => void;
+  index: number;
 }) => {
   return (
     <QuestionWrapper index={index} question={question}>
@@ -38,7 +54,7 @@ export const SingleChoiceQuestion = ({
               {...choice}
               qid={id}
               handleInput={handleInput}
-              isChecked={choice.id === answer}
+              isChecked={choice.id.toString() === answer}
               key={choice.id}
             />
           );
@@ -48,7 +64,17 @@ export const SingleChoiceQuestion = ({
   );
 };
 
-export const TrueFalseQuestion = ({ question, answer, id, index }) => {
+export const TrueFalseQuestion = ({
+  question,
+  answer,
+  id,
+  index,
+}: {
+  question: string;
+  answer: 1 | 0;
+  id: number;
+  index: number;
+}) => {
   // const [selectedAnswer, setSelectedAnswer] = useState<number>(answer);
 
   const cn =
@@ -60,7 +86,7 @@ export const TrueFalseQuestion = ({ question, answer, id, index }) => {
       <div className="flex justify-center gap-10">
         <input
           type="radio"
-          name={id}
+          name={id.toString()}
           value={1}
           id={id + "t"}
           className=""
@@ -71,7 +97,7 @@ export const TrueFalseQuestion = ({ question, answer, id, index }) => {
         </label>
         <input
           type="radio"
-          name={id}
+          name={id.toString()}
           value={0}
           id={id + "f"}
           className=""
