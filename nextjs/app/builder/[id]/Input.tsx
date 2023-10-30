@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 export const SingleChoiceInput = ({
   id,
   text,
@@ -20,7 +18,7 @@ export const SingleChoiceInput = ({
     <label
       htmlFor={inputId}
       className={`overflow-hidden border cursor-pointer hover:shadow-sm transition-shadow flex rounded-md items-center ${
-        isChecked && "border-green-300 bg-green-50"
+        isChecked && "border-green-300 bg-green-50 text-background"
       }`}
     >
       <input
