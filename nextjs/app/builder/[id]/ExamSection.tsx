@@ -58,6 +58,10 @@ export const SingleChoiceSection = () => {
     dispatch(singleChoiceActions.addQuestion(newQuestion));
   };
 
+  const onChoiceChange = (id: number, choiceId: string, text: string) => {
+    dispatch(singleChoiceActions.setChoice({ id, choiceId, text }));
+  };
+
   return (
     <ExamSection>
       {questions.map((question, index) => {
@@ -66,6 +70,7 @@ export const SingleChoiceSection = () => {
             {...question}
             onQuestionChange={handleQuestion}
             onAnswerChange={handleAnswer}
+            onChoiceChange={onChoiceChange}
             index={index}
             key={question.id}
           />

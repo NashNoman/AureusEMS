@@ -46,6 +46,7 @@ export const SingleChoiceQuestion = ({
   id,
   onAnswerChange,
   onQuestionChange,
+  onChoiceChange,
   index,
 }: {
   text: string;
@@ -54,6 +55,7 @@ export const SingleChoiceQuestion = ({
   id: number;
   onAnswerChange: (id: number, value: string) => void;
   onQuestionChange: (id: number, text: string) => void;
+  onChoiceChange: (id: number, choiceId: string, text: string) => void;
   index: number;
 }) => {
   return (
@@ -69,7 +71,8 @@ export const SingleChoiceQuestion = ({
             <SingleChoiceInput
               {...choice}
               qid={id}
-              onChange={onAnswerChange}
+              onAnswerChange={onAnswerChange}
+              onChoiceChange={onChoiceChange}
               isChecked={choice.id.toString() === answer}
               key={choice.id}
             />

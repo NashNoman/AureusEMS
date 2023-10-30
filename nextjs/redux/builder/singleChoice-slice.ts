@@ -67,6 +67,12 @@ const singleChoiceSlice = createSlice({
       const question = state.questions.find((q) => q.id === id);
       question!.answer = action.payload.value;
     },
+    setChoice(state, action) {
+      const { id, choiceId, text } = action.payload;
+      const question = state.questions.find((q) => q.id === id);
+      const choice = question?.choices.find((choice) => choice.id === choiceId);
+      choice!.text = text;
+    },
     addQuestion(state, action) {
       state.questions.push(action.payload);
     },
