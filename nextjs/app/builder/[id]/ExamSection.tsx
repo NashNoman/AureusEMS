@@ -9,7 +9,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { singleChoiceActions } from "@/redux/builder/singleChoice-slice";
 import { trueFalseActions } from "@/redux/builder/trueFalse-slice";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const ExamSection = ({ children }: { children: ReactNode }) => {
@@ -22,7 +22,6 @@ const ExamSection = ({ children }: { children: ReactNode }) => {
       <Separator />
       <CardContent className="bg-primary-foreground rounded-lg pt-5 flex flex-col gap-4">
         {children}
-        <AddQuestionPlaceholder />
       </CardContent>
     </Card>
   );
@@ -42,7 +41,22 @@ export const SingleChoiceSection = () => {
     dispatch(singleChoiceActions.setAnswer({ id, value }));
   };
 
-  console.log(questions);
+  const addQuestionHandler = () => {
+    const newQuestion: SCQuestion = {
+      id: Math.random(),
+      btLevel: null,
+      qType: "scq",
+      text: "",
+      choices: [
+        { id: "A", text: "" },
+        { id: "B", text: "" },
+        { id: "C", text: "" },
+        { id: "D", text: "" },
+      ],
+      answer: "C",
+    };
+    dispatch(singleChoiceActions.addQuestion(newQuestion));
+  };
 
   return (
     <ExamSection>
@@ -57,6 +71,7 @@ export const SingleChoiceSection = () => {
           />
         );
       })}
+      <AddQuestionPlaceholder onClick={addQuestionHandler} />
     </ExamSection>
   );
 };

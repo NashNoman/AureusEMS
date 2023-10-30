@@ -132,9 +132,16 @@ export const TrueFalseQuestion = ({
   );
 };
 
-export const AddQuestionPlaceholder = () => {
+export const AddQuestionPlaceholder = ({
+  onClick,
+}: {
+  onClick: () => void;
+}) => {
   return (
-    <div className="rounded-lg border-dashed border-2 grid items-center justify-center cursor-pointer hover:bg-slate-100 transition-all h-40">
+    <div
+      className="rounded-lg border-dashed border-2 grid items-center justify-center cursor-pointer hover:bg-slate-100 transition-all h-40"
+      onClick={onClick}
+    >
       <PlusIcon className="h-10 w-10 bg-slate-200 rounded-full p-1 text-slate-500" />
     </div>
   );

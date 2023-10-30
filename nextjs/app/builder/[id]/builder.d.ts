@@ -3,7 +3,7 @@ type SC = { id: string; text: string };
 interface SCQuestion {
   id: number;
   qType: string;
-  btLevel: number;
+  btLevel: number | null;
   text: string;
   choices: SC[];
   answer: string;
@@ -18,7 +18,7 @@ class SCSection {
 interface ToFQuestion {
   id: number;
   qType: "tof";
-  btLevel: number;
+  btLevel: number | null;
   text: string;
   answer: 1 | 0;
 }
