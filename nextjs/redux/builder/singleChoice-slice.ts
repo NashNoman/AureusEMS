@@ -57,21 +57,14 @@ const singleChoiceSlice = createSlice({
   },
   name: "singleChoice",
   reducers: {
-    setQuestion(state, action) {
-      const { id } = action.payload;
-      const question = state.questions.find((q) => q.id === id);
-      question!.text = action.payload.text;
-    },
-    setAnswer(state, action) {
-      const { id } = action.payload;
-      const question = state.questions.find((q) => q.id === id);
-      question!.answer = action.payload.value;
-    },
-    setChoice(state, action) {
-      const { id, choiceId, text } = action.payload;
-      const question = state.questions.find((q) => q.id === id);
-      const choice = question?.choices.find((choice) => choice.id === choiceId);
-      choice!.text = text;
+    updateQuestion(state, action) {
+      const { id, newQuestion } = action.payload;
+      const oldQuestionIndex = state.questions.findIndex((q) => q.id === id);
+      const oldQuestion = state.questions[oldQuestionIndex];
+      state.questions[oldQuestionIndex] = Object.assign(
+        oldQuestion,
+        newQuestion
+      );
     },
     addQuestion(state, action) {
       state.questions.push(action.payload);

@@ -33,12 +33,11 @@ export const SingleChoiceSection = () => {
   );
   const dispatch = useDispatch();
 
-  const handleQuestion = (id: number, text: string) => {
-    dispatch(singleChoiceActions.setQuestion({ id, text }));
-  };
-
-  const handleAnswer = (id: number, value: string) => {
-    dispatch(singleChoiceActions.setAnswer({ id, value }));
+  const questionUpdateHandler = (
+    id: number,
+    newQuestion: Partial<SCQuestion>
+  ) => {
+    dispatch(singleChoiceActions.updateQuestion({ id, newQuestion }));
   };
 
   const addQuestionHandler = () => {
@@ -58,19 +57,13 @@ export const SingleChoiceSection = () => {
     dispatch(singleChoiceActions.addQuestion(newQuestion));
   };
 
-  const onChoiceChange = (id: number, choiceId: string, text: string) => {
-    dispatch(singleChoiceActions.setChoice({ id, choiceId, text }));
-  };
-
   return (
     <ExamSection>
       {questions.map((question, index) => {
         return (
           <SingleChoiceQuestion
             {...question}
-            onQuestionChange={handleQuestion}
-            onAnswerChange={handleAnswer}
-            onChoiceChange={onChoiceChange}
+            onUpdate={questionUpdateHandler}
             index={index}
             key={question.id}
           />
@@ -87,8 +80,8 @@ export const TrueFalseSection = () => {
   );
   const dispatch = useDispatch();
 
-  const handleQuestion = (id: number, value: string) => {
-    dispatch(trueFalseActions.setQuestion({ id, value }));
+  const handleQuestion = (id: number, newQuestion: Partial<ToFQuestion>) => {
+    dispatch(trueFalseActions.updateQuestion({ id, newQuestion }));
   };
 
   return (
@@ -97,7 +90,7 @@ export const TrueFalseSection = () => {
         return (
           <TrueFalseQuestion
             {...question}
-            handleQuestion={handleQuestion}
+            onUpdate={handleQuestion}
             index={index}
             key={question.id}
           />

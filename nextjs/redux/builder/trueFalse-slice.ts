@@ -37,15 +37,11 @@ const trueFalseSlice = createSlice({
   },
   name: "trueFalse",
   reducers: {
-    setQuestion(state, action) {
-      const { id } = action.payload;
-      const question = state.questions.find((q) => q.id === id);
-      question!.text = action.payload.text;
-    },
-    setAnswer(state, action) {
-      const { id } = action.payload;
-      const question = state.questions.find((q) => q.id === id);
-      question!.answer = action.payload.answer;
+    updateQuestion(state, action) {
+      const { id, newQuestion } = action.payload;
+      const questionIndex = state.questions.findIndex((q) => q.id === id);
+      const question = state.questions[questionIndex];
+      state.questions[questionIndex] = Object.assign(question, newQuestion);
     },
   },
 });

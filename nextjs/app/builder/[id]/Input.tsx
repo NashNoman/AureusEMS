@@ -6,15 +6,15 @@ export const SingleChoiceInput = ({
   id,
   text,
   isChecked,
-  onAnswerChange,
-  onChoiceChange,
+  onUpdate,
+  onChoiceUpdate,
   qid,
 }: {
   id: string;
   text: string;
   isChecked: boolean;
-  onAnswerChange: (id: number, value: string) => void;
-  onChoiceChange: (id: number, choiceId: string, text: string) => void;
+  onUpdate: (id: number, newQuestion: Partial<SCQuestion>) => void;
+  onChoiceUpdate: (choiceId: string, text: string) => void;
   qid: number;
 }) => {
   const inputId = id.toString() + qid.toString();
@@ -32,7 +32,7 @@ export const SingleChoiceInput = ({
         value={id}
         className="hidden"
         checked={isChecked}
-        onChange={() => onAnswerChange(qid, id.toString())}
+        onChange={() => onUpdate(qid, { answer: id.toString() })}
       />
 
       <label
@@ -44,9 +44,7 @@ export const SingleChoiceInput = ({
 
       <ContentEditable
         html={text}
-        onChange={(e) => {
-          onChoiceChange(qid, id, e.target.value);
-        }}
+        onChange={(e) => onChoiceUpdate(id, e.target.value)}
         className="mx-3 cursor-text w-full outline-none"
       />
     </div>

@@ -9,7 +9,7 @@ interface SCQuestion {
   answer: string;
 }
 
-class SCSection {
+interface SCSection {
   sectionType: "scq";
   sectionGrade: number;
   questions: SCQuestion[];
@@ -23,7 +23,7 @@ interface ToFQuestion {
   answer: 1 | 0;
 }
 
-class ToFSection {
+interface ToFSection {
   sectionType: "tof";
   sectionGrade: number;
   questions: ToFQuestion[];
