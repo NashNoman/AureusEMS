@@ -1,38 +1,36 @@
-type SC = { id: string; text: string };
+type Section = {
+  type: string;
+  sectionGrade: number;
+  sectionPercentage: number;
+};
 
-interface SCQuestion {
+type Choice = { id: string; text: string };
+
+type MCQ = {
   id: number;
-  qType: string;
+  type: "mcq";
   btLevel: number | null;
   text: string;
-  choices: SC[];
+  choices: Choice[];
   answer: string;
-}
+};
 
-interface SCSection {
-  sectionType: "scq";
-  sectionGrade: number;
-  questions: SCQuestion[];
-}
+type MCQSection = {
+  order: number[];
+  questions: MCQ[];
+};
 
-interface ToFQuestion {
+type ToFQ = {
   id: number;
-  qType: "tof";
+  type: "tof";
   btLevel: number | null;
   text: string;
   answer: 1 | 0;
-}
+};
 
-interface ToFSection {
-  sectionType: "tof";
-  sectionGrade: number;
-  questions: ToFQuestion[];
-}
-
-type Section = {
-  sectionType: "scq" | "tof";
-  sectionGrade: number;
-  questions: SCQuestion[] | ToFQuestion[];
+type ToFSection = {
+  order: number[];
+  questions: ToFQ[];
 };
 
 type ExamInfo = {
@@ -41,11 +39,13 @@ type ExamInfo = {
   examId: number;
   examPercentage: number;
   examType: string;
-  sections: string[];
+  sections: Section[];
 };
 
-type RootState = {
-  exam: ExamInfo;
-  singleChoice: SCSection;
-  trueFalse: ToFSection;
+type Exam = {
+  examInfo: ExamInfo;
+  mcq?: MCQSection;
+  tof?: ToFSection;
 };
+
+type RootState = Exam;

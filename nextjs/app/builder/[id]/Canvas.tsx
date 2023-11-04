@@ -1,26 +1,25 @@
 "use client";
 
 import {
-  SingleChoiceSection,
+  MultiChoiceSection,
   TrueFalseSection,
 } from "@/app/builder/[id]/ExamSection";
-import examData from "@/temp/examData";
 import { useSelector } from "react-redux";
 
 const sectionType = new Map<string, () => JSX.Element>([
-  ["scq", SingleChoiceSection],
+  ["mcq", MultiChoiceSection],
   ["tof", TrueFalseSection],
 ]);
 
 export default function Canvas() {
-  const sections = useSelector((state: RootState) => state.exam.sections);
+  const sections = useSelector((state: RootState) => state.examInfo.sections);
 
   return (
     <main className="flex flex-col items-center py-10 gap-4 container">
-      {sections.map((sec: string) => {
-        const ExamSection = sectionType.get(sec);
+      {sections.map(({ type }) => {
+        const ExamSection = sectionType.get(type);
         if (typeof ExamSection === "undefined") return;
-        return <ExamSection key={sec} />;
+        return <ExamSection key={type} />;
       })}
     </main>
   );

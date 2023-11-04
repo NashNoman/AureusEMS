@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const examSlice = createSlice({
+const examInfoSlice = createSlice({
   initialState: {
-    courseTitle: "Introduction to Computers",
-    courseCode: "CSCI100",
-    examId: 123,
-    examPercentage: 10,
-    examType: "test",
-    sections: ["scq", "tof"],
+    courseTitle: "",
+    courseCode: "",
+    examId: null,
+    examPercentage: null,
+    examType: "",
+    sections: [],
   },
-  name: "examInfo",
+  name: "examInfoInfo",
   reducers: {},
 });
 
-export const examActions = examSlice.actions;
+export const examInfoActions = examInfoSlice.actions;
 
-export default examSlice;
+export default examInfoSlice;

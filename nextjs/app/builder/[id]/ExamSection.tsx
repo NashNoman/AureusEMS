@@ -7,8 +7,8 @@ import {
 } from "@/app/builder/[id]/Question";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { singleChoiceActions } from "@/redux/builder/singleChoice-slice";
-import { trueFalseActions } from "@/redux/builder/trueFalse-slice";
+import { mcqActions } from "@/redux/builder/singleChoice-slice";
+import { tofActions } from "@/redux/builder/trueFalse-slice";
 import { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -27,24 +27,19 @@ const ExamSection = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const SingleChoiceSection = () => {
-  const questions = useSelector(
-    (state: RootState) => state.singleChoice.questions
-  );
+export const MultiChoiceSection = () => {
+  const questions = useSelector((state: RootState) => state.mcq?.questions);
   const dispatch = useDispatch();
 
-  const questionUpdateHandler = (
-    id: number,
-    newQuestion: Partial<SCQuestion>
-  ) => {
-    dispatch(singleChoiceActions.updateQuestion({ id, newQuestion }));
+  const questionUpdateHandler = (id: number, newQuestion: Partial<MCQ>) => {
+    dispatch(mcqActions.updateQuestion({ id, newQuestion }));
   };
 
   const addQuestionHandler = () => {
-    const newQuestion: SCQuestion = {
+    const newQuestion: MCQ = {
       id: Math.random(),
       btLevel: null,
-      qType: "scq",
+      type: "mcq",
       text: "",
       choices: [
         { id: "A", text: "" },
@@ -54,12 +49,12 @@ export const SingleChoiceSection = () => {
       ],
       answer: "C",
     };
-    dispatch(singleChoiceActions.addQuestion(newQuestion));
+    dispatch(mcqActions.addQuestion(newQuestion));
   };
 
   return (
     <ExamSection>
-      {questions.map((question, index) => {
+      {questions?.map((question, index) => {
         return (
           <SingleChoiceQuestion
             {...question}
@@ -75,18 +70,16 @@ export const SingleChoiceSection = () => {
 };
 
 export const TrueFalseSection = () => {
-  const questions = useSelector(
-    (state: RootState) => state.trueFalse.questions
-  );
+  const questions = useSelector((state: RootState) => state.tof?.questions);
   const dispatch = useDispatch();
 
-  const handleQuestion = (id: number, newQuestion: Partial<ToFQuestion>) => {
-    dispatch(trueFalseActions.updateQuestion({ id, newQuestion }));
+  const handleQuestion = (id: number, newQuestion: Partial<ToFQ>) => {
+    dispatch(tofActions.updateQuestion({ id, newQuestion }));
   };
 
   return (
     <ExamSection>
-      {questions.map((question, index) => {
+      {questions?.map((question, index) => {
         return (
           <TrueFalseQuestion
             {...question}

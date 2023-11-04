@@ -5,9 +5,9 @@ import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
-    exam: examSlice.reducer,
-    singleChoice: singleChoiceSlice.reducer,
-    trueFalse: trueFalseSlice.reducer,
+    examInfo: examSlice.reducer,
+    mcq: singleChoiceSlice.reducer,
+    tof: trueFalseSlice.reducer,
   },
 });
 

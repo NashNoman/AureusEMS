@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const singleChoiceSlice = createSlice({
+const mcqSlice = createSlice({
   initialState: {
-    sectionType: "scq",
-    sectionGrade: 50,
+    order: [],
     questions: [
       {
         id: 19,
-        qType: "sc",
+        type: "sc",
         btLevel: 1,
         text: "What does 'CPU' stand for?",
         choices: [
@@ -20,7 +19,7 @@ const singleChoiceSlice = createSlice({
       },
       {
         id: 37,
-        qType: "sc",
+        type: "sc",
         btLevel: 2,
         text: "Which of the following is the correct definition of Computer?",
         choices: [
@@ -42,7 +41,7 @@ const singleChoiceSlice = createSlice({
       },
       {
         id: 65,
-        qType: "sc",
+        type: "sc",
         btLevel: 1,
         text: "Which of the following language does the computer understand:",
         choices: [
@@ -55,7 +54,7 @@ const singleChoiceSlice = createSlice({
       },
     ],
   },
-  name: "singleChoice",
+  name: "mcq",
   reducers: {
     updateQuestion(state, action) {
       const { id, newQuestion } = action.payload;
@@ -72,6 +71,6 @@ const singleChoiceSlice = createSlice({
   },
 });
 
-export const singleChoiceActions = singleChoiceSlice.actions;
+export const mcqActions = mcqSlice.actions;
 
-export default singleChoiceSlice;
+export default mcqSlice;

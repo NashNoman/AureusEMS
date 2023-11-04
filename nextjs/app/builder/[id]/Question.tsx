@@ -14,10 +14,7 @@ const QuestionWrapper = ({
   children: ReactNode;
   question: string;
   id: number;
-  onChange: (
-    id: number,
-    newQuestion: Partial<SCQuestion> & Partial<ToFQuestion>
-  ) => void;
+  onChange: (id: number, newQuestion: Partial<MCQ> & Partial<ToFQ>) => void;
   index: number;
 }) => {
   return (
@@ -51,10 +48,10 @@ export const SingleChoiceQuestion = ({
   index,
 }: {
   text: string;
-  choices: SC[];
+  choices: Choice[];
   answer: string;
   id: number;
-  onUpdate: (id: number, newQuestion: Partial<SCQuestion>) => void;
+  onUpdate: (id: number, newQuestion: Partial<MCQ>) => void;
   index: number;
 }) => {
   const updateChoice = (choiceId: string, text: string) => {
@@ -93,7 +90,7 @@ export const TrueFalseQuestion = ({
 }: {
   text: string;
   answer: 1 | 0;
-  onUpdate: (id: number, newQuestion: Partial<ToFQuestion>) => void;
+  onUpdate: (id: number, newQuestion: Partial<ToFQ>) => void;
   id: number;
   index: number;
 }) => {

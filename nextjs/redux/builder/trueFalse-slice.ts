@@ -1,41 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const trueFalseSlice = createSlice({
+const tofSlice = createSlice({
   initialState: {
-    sectionType: "tof",
-    sectionGrade: 50,
+    order: [],
     questions: [
       {
         id: 123,
-        qType: "tof",
+        type: "tof",
         btLevel: 1,
         text: "CPU stands for Central Processing Unit",
         answer: 1,
       },
       {
         id: 321,
-        qType: "tof",
+        type: "tof",
         btLevel: 2,
         text: "Webcam is a type of output device.",
         answer: 0,
       },
       {
         id: 45,
-        qType: "tof",
+        type: "tof",
         btLevel: 2,
         text: "Webcam is a type of input device webcam is a type of input device webcam is a type of input device webcam is a type of input device webcam is a type of input device.",
         answer: 0,
       },
       {
         id: 32,
-        qType: "tof",
+        type: "tof",
         btLevel: 1,
         text: "A computer only understands binary language",
         answer: 1,
       },
     ],
   },
-  name: "trueFalse",
+  name: "tof",
   reducers: {
     updateQuestion(state, action) {
       const { id, newQuestion } = action.payload;
@@ -46,6 +45,6 @@ const trueFalseSlice = createSlice({
   },
 });
 
-export const trueFalseActions = trueFalseSlice.actions;
+export const tofActions = tofSlice.actions;
 
-export default trueFalseSlice;
+export default tofSlice;
