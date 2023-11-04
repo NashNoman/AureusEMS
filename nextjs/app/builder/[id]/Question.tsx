@@ -3,6 +3,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { ReactNode } from "react";
 import ContentEditable from "react-contenteditable";
+import { useSelector } from "react-redux";
 
 const QuestionWrapper = ({
   children,
@@ -40,45 +41,73 @@ const QuestionWrapper = ({
 };
 
 export const SingleChoiceQuestion = ({
-  text,
-  choices,
-  answer,
   id,
-  onUpdate,
   index,
 }: {
-  text: string;
-  choices: Choice[];
-  answer: string;
   id: number;
-  onUpdate: (id: number, newQuestion: Partial<MCQ>) => void;
   index: number;
 }) => {
-  const updateChoice = (choiceId: string, text: string) => {
-    const currentChoices = [...choices];
-    const choiceIndex = currentChoices.findIndex((ch) => ch.id === choiceId);
-    currentChoices[choiceIndex] = { id: choiceId, text };
-    onUpdate(id, { choices: currentChoices });
-  };
+  const question = useSelector((state: RootState) =>
+    state.mcq?.questions.find((q) => q.id === id)
+  ) as MCQ;
 
   return (
-    <QuestionWrapper index={index} id={id} onChange={onUpdate} question={text}>
-      <div className="flex flex-col gap-3">
-        {choices.map((choice) => {
-          return (
+    <Card className="min-h-[20rem]">
+      <CardHeader className="flex-row items-center justify-between">
+        <h3 className="font-bold text-xl">{index + 1}</h3>
+        <div>
+          <div className="bg-red-200 text-red-400 rounded-full font-bold text-center inline-block w-5 text-sm">
+            <p>C</p>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="h-full">
+        <ContentEditable
+          className="mb-10"
+          html={question.text}
+          onChange={() => {}}
+        />
+        <div className="flex flex-col gap-4">
+          {question.choices.map((choice) => (
             <SingleChoiceInput
               {...choice}
               qid={id}
-              onUpdate={onUpdate}
-              onChoiceUpdate={updateChoice}
-              isChecked={choice.id.toString() === answer}
+              onUpdate={() => {}}
+              onChoiceUpdate={() => {}}
+              isChecked={choice.id.toString() === question.answer}
               key={choice.id}
             />
-          );
-        })}
-      </div>
-    </QuestionWrapper>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   );
+
+  // const updateChoice = (choiceId: string, text: string) => {
+  //   const currentChoices = [...choices];
+  //   const choiceIndex = currentChoices.findIndex((ch) => ch.id === choiceId);
+  //   currentChoices[choiceIndex] = { id: choiceId, text };
+  //   onUpdate(id, { choices: currentChoices });
+  // };
+
+  // return (
+  //   <QuestionWrapper index={index} id={id} onChange={onUpdate} question={text}>
+  //     <div className="flex flex-col gap-3">
+  //       {choices.map((choice) => {
+  //         return (
+  //           <SingleChoiceInput
+  //             {...choice}
+  //             qid={id}
+  //             onUpdate={onUpdate}
+  //             onChoiceUpdate={updateChoice}
+  //             isChecked={choice.id.toString() === answer}
+  //             key={choice.id}
+  //           />
+  //         );
+  //       })}
+  //     </div>
+  //   </QuestionWrapper>
+  // );
 };
 
 export const TrueFalseQuestion = ({
@@ -135,11 +164,11 @@ export const AddQuestionPlaceholder = ({
   onClick: () => void;
 }) => {
   return (
-    <div
-      className="rounded-lg border-dashed border-2 grid items-center justify-center cursor-pointer hover:bg-slate-100 transition-all h-40"
+    <Card
+      className="rounded-lg border-dashed border-secondary opacity-30 border-2 bg-popover grid items-center justify-center cursor-pointer hover:bg-muted-foreground transition-all"
       onClick={onClick}
     >
-      <PlusIcon className="h-10 w-10 bg-slate-200 rounded-full p-1 text-slate-500" />
-    </div>
+      <PlusIcon className="h-16 w-16 bg-primary rounded-full p-3 text-primary-foreground opacity-50" />
+    </Card>
   );
 };

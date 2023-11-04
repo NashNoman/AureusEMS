@@ -13,7 +13,7 @@ export const SingleChoiceInput = ({
   id: string;
   text: string;
   isChecked: boolean;
-  onUpdate: (id: number, newQuestion: Partial<SCQuestion>) => void;
+  onUpdate: (id: number, newQuestion: Partial<MCQ>) => void;
   onChoiceUpdate: (choiceId: string, text: string) => void;
   qid: number;
 }) => {
@@ -45,7 +45,7 @@ export const SingleChoiceInput = ({
       <ContentEditable
         html={text}
         onChange={(e) => onChoiceUpdate(id, e.target.value)}
-        className="mx-3 cursor-text w-full outline-none"
+        className="mx-3 my-2 cursor-text w-full outline-none"
       />
     </div>
   );

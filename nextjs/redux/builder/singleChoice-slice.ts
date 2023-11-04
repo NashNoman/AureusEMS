@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const mcqSlice = createSlice({
   initialState: {
-    order: [],
+    order: [37, 65, 19],
     questions: [
       {
         id: 19,
