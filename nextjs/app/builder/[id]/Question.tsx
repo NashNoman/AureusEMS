@@ -2,7 +2,13 @@ import { SingleChoiceInput } from "@/app/builder/[id]/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { mcqActions } from "@/redux/builder/mcq-slice";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { ReactNode } from "react";
+import {
+  MutableRefObject,
+  ReactNode,
+  createRef,
+  useEffect,
+  useRef,
+} from "react";
 import ContentEditable from "react-contenteditable";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -65,6 +71,12 @@ export const SingleChoiceQuestion = ({
     state.mcq?.questions.find((q) => q.id === id)
   ) as MCQ;
   const dispatch = useDispatch();
+  const textRef = createRef<HTMLElement>();
+
+  useEffect(() => {
+    if (question.text) return;
+    textRef.current?.focus();
+  }, []);
 
   const updateQuestion = (newQuestion: Partial<MCQ>) => {
     dispatch(mcqActions.updateQuestion({ id, newQuestion }));
@@ -79,15 +91,17 @@ export const SingleChoiceQuestion = ({
   };
 
   return (
-    <Card className="min-h-[20rem]">
+    <Card className="min-h-[10rem]">
       <QuestionHeader index={index} />
       <CardContent className="h-full">
         <ContentEditable
-          className="mb-10"
+          innerRef={textRef}
+          className="mb-10 py-1"
           html={question.text}
           onChange={(e) => {
             updateQuestion({ text: e.target.value });
           }}
+          autoFocus={!question.text}
         />
         <div className="flex flex-col gap-4">
           {question.choices.map((choice) => (

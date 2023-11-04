@@ -65,8 +65,24 @@ const mcqSlice = createSlice({
         newQuestion
       );
     },
-    addQuestion(state, action) {
-      state.questions.push(action.payload);
+    addQuestion(state) {
+      console.log("Adding");
+
+      const question = {
+        id: Math.random(),
+        btLevel: 0,
+        type: "mcq",
+        text: "",
+        choices: [
+          { id: "A", text: "" },
+          { id: "B", text: "" },
+          { id: "C", text: "" },
+          { id: "D", text: "" },
+        ],
+        answer: "C",
+      };
+      state.order.push(question.id);
+      state.questions.push(question);
     },
   },
 });

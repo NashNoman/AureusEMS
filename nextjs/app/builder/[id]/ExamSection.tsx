@@ -49,6 +49,13 @@ const MultiChoiceHeader = ({ questionNum }: { questionNum: number }) => {
 
 export const MultiChoiceSection = () => {
   const questionOrder = useSelector((state: RootState) => state.mcq?.order);
+  console.log("mcq section rendered");
+
+  const dispatch = useDispatch();
+
+  const addNewQuestion = () => {
+    dispatch(mcqActions.addQuestion());
+  };
 
   return (
     <div className="w-[80%] ">
@@ -59,7 +66,7 @@ export const MultiChoiceSection = () => {
         {questionOrder?.map((qid, idx) => (
           <SingleChoiceQuestion key={qid} id={qid} index={idx} />
         ))}
-        <AddQuestionPlaceholder onClick={() => {}} />
+        <AddQuestionPlaceholder onClick={addNewQuestion} />
       </div>
     </div>
   );
