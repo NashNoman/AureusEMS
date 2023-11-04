@@ -8,7 +8,7 @@ import {
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { mcqActions } from "@/redux/builder/singleChoice-slice";
+import { mcqActions } from "@/redux/builder/mcq-slice";
 import { tofActions } from "@/redux/builder/trueFalse-slice";
 import { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,9 +1,10 @@
 import { SingleChoiceInput } from "@/app/builder/[id]/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { mcqActions } from "@/redux/builder/mcq-slice";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { ReactNode } from "react";
 import ContentEditable from "react-contenteditable";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const QuestionWrapper = ({
   children,
@@ -40,6 +41,19 @@ const QuestionWrapper = ({
   );
 };
 
+const QuestionHeader = ({ index }: { index: number }) => {
+  return (
+    <CardHeader className="flex-row items-center justify-between">
+      <h3 className="font-bold text-xl">{index + 1}</h3>
+      <div>
+        <div className="bg-red-200 text-red-400 rounded-full font-bold text-center inline-block w-5 text-sm">
+          <p>C</p>
+        </div>
+      </div>
+    </CardHeader>
+  );
+};
+
 export const SingleChoiceQuestion = ({
   id,
   index,
@@ -50,30 +64,38 @@ export const SingleChoiceQuestion = ({
   const question = useSelector((state: RootState) =>
     state.mcq?.questions.find((q) => q.id === id)
   ) as MCQ;
+  const dispatch = useDispatch();
+
+  const updateQuestion = (newQuestion: Partial<MCQ>) => {
+    dispatch(mcqActions.updateQuestion({ id, newQuestion }));
+  };
+
+  const updateChoice = (choiceId: string, text: string) => {
+    const { choices } = question;
+    const currentChoices = [...choices];
+    const choiceIndex = currentChoices.findIndex((ch) => ch.id === choiceId);
+    currentChoices[choiceIndex] = { id: choiceId, text };
+    updateQuestion({ choices: currentChoices });
+  };
 
   return (
     <Card className="min-h-[20rem]">
-      <CardHeader className="flex-row items-center justify-between">
-        <h3 className="font-bold text-xl">{index + 1}</h3>
-        <div>
-          <div className="bg-red-200 text-red-400 rounded-full font-bold text-center inline-block w-5 text-sm">
-            <p>C</p>
-          </div>
-        </div>
-      </CardHeader>
+      <QuestionHeader index={index} />
       <CardContent className="h-full">
         <ContentEditable
           className="mb-10"
           html={question.text}
-          onChange={() => {}}
+          onChange={(e) => {
+            updateQuestion({ text: e.target.value });
+          }}
         />
         <div className="flex flex-col gap-4">
           {question.choices.map((choice) => (
             <SingleChoiceInput
               {...choice}
               qid={id}
-              onUpdate={() => {}}
-              onChoiceUpdate={() => {}}
+              onUpdate={updateQuestion}
+              onChoiceUpdate={updateChoice}
               isChecked={choice.id.toString() === question.answer}
               key={choice.id}
             />
@@ -82,32 +104,6 @@ export const SingleChoiceQuestion = ({
       </CardContent>
     </Card>
   );
-
-  // const updateChoice = (choiceId: string, text: string) => {
-  //   const currentChoices = [...choices];
-  //   const choiceIndex = currentChoices.findIndex((ch) => ch.id === choiceId);
-  //   currentChoices[choiceIndex] = { id: choiceId, text };
-  //   onUpdate(id, { choices: currentChoices });
-  // };
-
-  // return (
-  //   <QuestionWrapper index={index} id={id} onChange={onUpdate} question={text}>
-  //     <div className="flex flex-col gap-3">
-  //       {choices.map((choice) => {
-  //         return (
-  //           <SingleChoiceInput
-  //             {...choice}
-  //             qid={id}
-  //             onUpdate={onUpdate}
-  //             onChoiceUpdate={updateChoice}
-  //             isChecked={choice.id.toString() === answer}
-  //             key={choice.id}
-  //           />
-  //         );
-  //       })}
-  //     </div>
-  //   </QuestionWrapper>
-  // );
 };
 
 export const TrueFalseQuestion = ({

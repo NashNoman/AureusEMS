@@ -13,7 +13,7 @@ export const SingleChoiceInput = ({
   id: string;
   text: string;
   isChecked: boolean;
-  onUpdate: (id: number, newQuestion: Partial<MCQ>) => void;
+  onUpdate: (newQuestion: Partial<MCQ>) => void;
   onChoiceUpdate: (choiceId: string, text: string) => void;
   qid: number;
 }) => {
@@ -32,7 +32,7 @@ export const SingleChoiceInput = ({
         value={id}
         className="hidden"
         checked={isChecked}
-        onChange={() => onUpdate(qid, { answer: id.toString() })}
+        onChange={() => onUpdate({ answer: id.toString() })}
       />
 
       <label
