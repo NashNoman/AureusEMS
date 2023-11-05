@@ -4,9 +4,9 @@ import ReduxProvider from "@/app/builder/[id]/ReduxProvider";
 
 export default function Builder() {
   return (
-    <ReduxProvider>
+    <>
       <BuilderNavBar />
       <Canvas />
-    </ReduxProvider>
+    </>
   );
 }
