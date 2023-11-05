@@ -5,6 +5,7 @@ import {
   AddQuestionPlaceholder,
   TrueFalseQuestion,
 } from "@/app/builder/[id]/Question";
+import SectionWrapper from "@/app/builder/[id]/SectionWrapper";
 import { Input } from "@/components/ui/input";
 import { mcqActions } from "@/redux/builder/mcq-slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,7 +46,7 @@ export const MultiChoiceSection = () => {
   };
 
   return (
-    <div className="min-w-[80%] p-2 bg-secondary rounded-md">
+    <SectionWrapper>
       <div className="p-7">
         <SectionHeader
           questionsNum={questionOrder?.length as number}
@@ -53,13 +54,13 @@ export const MultiChoiceSection = () => {
           sectionType={"mcq"}
         />
       </div>
-      <div className="grid grid-cols-2 gap-4 my-4 ">
+      <div className="grid grid-cols-2 gap-4 my-4 auto-rows-mcq">
         {questionOrder?.map((qid, idx) => (
           <SingleChoiceQuestion key={qid} id={qid} index={idx} />
         ))}
         <AddQuestionPlaceholder onClick={addNewQuestion} />
       </div>
-    </div>
+    </SectionWrapper>
   );
 };
 
@@ -72,7 +73,7 @@ export const TrueFalseSection = () => {
   };
 
   return (
-    <div className="min-w-[80%] p-2 bg-secondary rounded-md">
+    <SectionWrapper>
       <div className="p-7">
         <SectionHeader
           questionsNum={questionOrder?.length as number}
@@ -80,12 +81,12 @@ export const TrueFalseSection = () => {
           sectionType={"tof"}
         />
       </div>
-      <div className="grid grid-cols-2 gap-4 my-4 ">
+      <div className="grid grid-cols-2 gap-4 my-4 auto-rows-tof">
         {questionOrder?.map((qid, idx) => (
           <TrueFalseQuestion key={qid} id={qid} index={idx} />
         ))}
         <AddQuestionPlaceholder onClick={addNewQuestion} />
       </div>
-    </div>
+    </SectionWrapper>
   );
 };

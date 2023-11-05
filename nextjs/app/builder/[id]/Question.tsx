@@ -157,10 +157,10 @@ export const AddQuestionPlaceholder = ({
 }) => {
   return (
     <Card
-      className="rounded-xl min-h-[25rem] border-dashed border-secondary opacity-30 border-2 bg-popover grid items-center justify-center cursor-pointer hover:bg-muted-foreground transition-all"
+      className="rounded-xl border-dashed border-secondary border-2 bg-popover grid items-center justify-center cursor-pointer hover:bg-gray-600 transition-all"
       onClick={onClick}
     >
-      <PlusIcon className="h-16 w-16 bg-primary rounded-full p-3 text-primary-foreground opacity-50" />
+      <PlusIcon className="h-16 w-16 bg-accent rounded-full p-3 text-muted-foreground" />
     </Card>
   );
 };

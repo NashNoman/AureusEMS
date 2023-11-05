@@ -16,6 +16,10 @@ module.exports = {
       },
     },
     extend: {
+      gridAutoRows: {
+        mcq: "minmax(25rem, auto)",
+        tof: "minmax(12rem, auto)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
