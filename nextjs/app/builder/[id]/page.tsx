@@ -1,12 +1,11 @@
-import BuilderNavBar from "@/app/builder/[id]/BuilderNavBar";
 import Canvas from "@/app/builder/[id]/Canvas";
-import ReduxProvider from "@/app/builder/[id]/ReduxProvider";
+import SideMenu from "@/app/builder/[id]/SideMenu";
 
 export default function Builder() {
   return (
-    <>
-      <BuilderNavBar />
+    <div className="flex">
+      <SideMenu />
       <Canvas />
-    </>
+    </div>
   );
 }

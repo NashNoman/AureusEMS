@@ -10,8 +10,8 @@ export default function BuilderNavBar() {
   );
 
   return (
-    <header className="sticky top-0 left-0 flex w-screen border-b justify-between bg-background items-center">
-      <Logo className="fill-primary h-9 m-3" />
+    <header className="sticky top-0 left-0 flex z-10 h-14 w-screen border-b justify-between bg-background items-center">
+      <Logo className="fill-primary h-9 mr-2 ml-4" />
       <div className="text-center flex-grow border-x">
         <p className="text-primary">Test</p>
         <p className="text-xs text-muted-foreground">

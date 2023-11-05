@@ -22,7 +22,7 @@ export const SingleChoiceInput = ({
   return (
     <div
       className={`overflow-hidden border cursor-pointer hover:shadow-sm transition-shadow flex rounded-md items-center ${
-        isChecked && "border-green-300 bg-green-50 text-background"
+        isChecked && "border-green-300 bg-green-50 text-primary"
       }`}
     >
       <input
