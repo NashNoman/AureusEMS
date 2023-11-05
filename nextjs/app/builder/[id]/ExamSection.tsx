@@ -31,12 +31,14 @@ const ExamSection = ({ children }: { children: ReactNode }) => {
 const SectionHeader = ({
   questionsNum,
   sectionTitle,
+  sectionType,
 }: {
   questionsNum: number;
   sectionTitle: string;
+  sectionType: "mcq" | "tof";
 }) => {
   const sectionInfo = useSelector((state: RootState) =>
-    state.examInfo.sections.find((sec) => sec.type === "mcq")
+    state.examInfo.sections.find((sec) => sec.type === sectionType)
   );
   return (
     <div className="flex justify-between">
@@ -55,8 +57,6 @@ const SectionHeader = ({
 
 export const MultiChoiceSection = () => {
   const questionOrder = useSelector((state: RootState) => state.mcq?.order);
-  console.log("mcq section rendered");
-
   const dispatch = useDispatch();
 
   const addNewQuestion = () => {
@@ -69,6 +69,7 @@ export const MultiChoiceSection = () => {
         <SectionHeader
           questionsNum={questionOrder?.length as number}
           sectionTitle="Multiple Choices"
+          sectionType={"mcq"}
         />
       </div>
       <div className="grid grid-cols-2 gap-4 my-4 ">
@@ -82,25 +83,50 @@ export const MultiChoiceSection = () => {
 };
 
 export const TrueFalseSection = () => {
-  const questions = useSelector((state: RootState) => state.tof?.questions);
+  const questionOrder = useSelector((state: RootState) => state.tof?.order);
   const dispatch = useDispatch();
 
-  const handleQuestion = (id: number, newQuestion: Partial<ToFQ>) => {
-    dispatch(tofActions.updateQuestion({ id, newQuestion }));
+  const addNewQuestion = () => {
+    // dispatch(tofActions.addQuestion());
   };
 
   return (
-    <ExamSection>
-      {questions?.map((question, index) => {
-        return (
-          <TrueFalseQuestion
-            {...question}
-            onUpdate={handleQuestion}
-            index={index}
-            key={question.id}
-          />
-        );
-      })}
-    </ExamSection>
+    <div className="min-w-[80%] p-2 bg-secondary rounded-md">
+      <div className="p-7">
+        <SectionHeader
+          questionsNum={questionOrder?.length as number}
+          sectionTitle="True or False"
+          sectionType={"tof"}
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-4 my-4 ">
+        {questionOrder?.map((qid, idx) => (
+          <TrueFalseQuestion key={qid} id={qid} index={idx} />
+        ))}
+        <AddQuestionPlaceholder onClick={addNewQuestion} />
+      </div>
+    </div>
   );
+
+  // const questions = useSelector((state: RootState) => state.tof?.questions);
+  // // const dispatch = useDispatch();
+
+  // const handleQuestion = (id: number, newQuestion: Partial<ToFQ>) => {
+  //   dispatch(tofActions.updateQuestion({ id, newQuestion }));
+  // };
+
+  // return (
+  //   <ExamSection>
+  //     {questions?.map((question, index) => {
+  //       return (
+  //         <TrueFalseQuestion
+  //           {...question}
+  //           onUpdate={handleQuestion}
+  //           index={index}
+  //           key={question.id}
+  //         />
+  //       );
+  //     })}
+  //   </ExamSection>
+  // );
 };

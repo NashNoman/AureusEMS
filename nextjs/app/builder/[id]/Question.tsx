@@ -121,51 +121,105 @@ export const SingleChoiceQuestion = ({
 };
 
 export const TrueFalseQuestion = ({
-  text,
-  answer,
-  onUpdate,
   id,
   index,
 }: {
-  text: string;
-  answer: 1 | 0;
-  onUpdate: (id: number, newQuestion: Partial<ToFQ>) => void;
   id: number;
   index: number;
 }) => {
+  const question = useSelector((state: RootState) =>
+    state.tof?.questions.find((q) => q.id === id)
+  ) as ToFQ;
+  const dispatch = useDispatch();
+  const textRef = createRef<HTMLElement>();
+
+  useEffect(() => {
+    if (question.text) return;
+    textRef.current?.focus();
+  }, []);
+
+  const updateQuestion = (newQuestion: Partial<ToFQ>) => {
+    dispatch(mcqActions.updateQuestion({ id, newQuestion }));
+  };
+
   const cn =
     "bg-gray-200 px-20 py-2 cursor-pointer font-semibold text-gray-600 rounded-sm hover:shadow-sm transition-shadow";
 
   return (
-    <QuestionWrapper index={index} id={id} onChange={onUpdate} question={text}>
-      <div className="flex justify-center gap-10">
-        <input
-          type="radio"
-          name={id.toString()}
-          value={1}
-          id={id + "t"}
-          className="hidden"
-          checked={answer === 1}
-          onChange={() => onUpdate(id, { answer: 1 })}
+    <Card className="min-h-[10rem]">
+      <QuestionHeader index={index} />
+      <CardContent className="h-full">
+        <ContentEditable
+          innerRef={textRef}
+          className="mb-10 py-1 font-semibold"
+          html={question.text}
+          onChange={(e) => {
+            updateQuestion({ text: e.target.value });
+          }}
+          autoFocus={!question.text}
         />
-        <label htmlFor={id + "t"} className={cn}>
-          True
-        </label>
-        <input
-          type="radio"
-          name={id.toString()}
-          value={0}
-          id={id + "f"}
-          className="hidden"
-          checked={answer === 0}
-          onChange={() => onUpdate(id, { answer: 0 })}
-        />
-        <label htmlFor={id + "f"} className={cn}>
-          False
-        </label>
-      </div>
-    </QuestionWrapper>
+        <div className="flex flex-col gap-4">
+          <div className="flex justify-center gap-10">
+            <input
+              type="radio"
+              name={id.toString()}
+              value={1}
+              id={id + "t"}
+              className="hidden"
+              checked={question.answer === 1}
+              onChange={() => updateQuestion({ answer: 1 })}
+            />
+            <label htmlFor={id + "t"} className={cn}>
+              True
+            </label>
+            <input
+              type="radio"
+              name={id.toString()}
+              value={0}
+              id={id + "f"}
+              className="hidden"
+              checked={question.answer === 0}
+              onChange={() => updateQuestion({ answer: 0 })}
+            />
+            <label htmlFor={id + "f"} className={cn}>
+              False
+            </label>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
+
+  // return (
+  //   <QuestionWrapper index={index} id={id} onChange={onUpdate} question={text}>
+  //     <div className="flex justify-center gap-10">
+  //       <input
+  //         type="radio"
+  //         name={id.toString()}
+  //         value={1}
+  //         id={id + "t"}
+  //         className="hidden"
+  //         checked={answer === 1}
+  //         onChange={() => onUpdate(id, { answer: 1 })}
+  //       />
+  //       <label htmlFor={id + "t"} className={cn}>
+  //         True
+  //       </label>
+  //       <input
+  //         type="radio"
+  //         name={id.toString()}
+  //         value={0}
+  //         id={id + "f"}
+  //         className="hidden"
+  //         checked={answer === 0}
+  //         onChange={() => onUpdate(id, { answer: 0 })}
+  //       />
+  //       <label htmlFor={id + "f"} className={cn}>
+  //         False
+  //       </label>
+  //     </div>
+  //   </QuestionWrapper>
+  // );
 };
 
 export const AddQuestionPlaceholder = ({

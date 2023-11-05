@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const tofSlice = createSlice({
   initialState: {
-    order: [],
+    order: [321, 123, 45, 32],
     questions: [
       {
         id: 123,
