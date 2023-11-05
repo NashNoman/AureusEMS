@@ -7,7 +7,7 @@ export const metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html>
-      <body className="bg-secondary dark">
+      <body className="dark">
         {/* TODO: Add custom functionalities to 'main' tag */}
         {children}
       </body>

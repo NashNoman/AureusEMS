@@ -96,7 +96,7 @@ export const SingleChoiceQuestion = ({
       <CardContent className="h-full">
         <ContentEditable
           innerRef={textRef}
-          className="mb-10 py-1"
+          className="mb-10 py-1 font-semibold"
           html={question.text}
           onChange={(e) => {
             updateQuestion({ text: e.target.value });
@@ -175,7 +175,7 @@ export const AddQuestionPlaceholder = ({
 }) => {
   return (
     <Card
-      className="rounded-lg border-dashed border-secondary opacity-30 border-2 bg-popover grid items-center justify-center cursor-pointer hover:bg-muted-foreground transition-all"
+      className="rounded-xl min-h-[25rem] border-dashed border-secondary opacity-30 border-2 bg-popover grid items-center justify-center cursor-pointer hover:bg-muted-foreground transition-all"
       onClick={onClick}
     >
       <PlusIcon className="h-16 w-16 bg-primary rounded-full p-3 text-primary-foreground opacity-50" />

@@ -58,10 +58,10 @@ export const MultiChoiceSection = () => {
   };
 
   return (
-    <div className="w-[80%] ">
-      <Card className="p-7">
+    <div className="min-w-[80%] p-2 bg-secondary rounded-md">
+      <div className="p-7">
         <MultiChoiceHeader questionNum={questionOrder?.length as number} />
-      </Card>
+      </div>
       <div className="grid grid-cols-2 gap-4 my-4 ">
         {questionOrder?.map((qid, idx) => (
           <SingleChoiceQuestion key={qid} id={qid} index={idx} />
