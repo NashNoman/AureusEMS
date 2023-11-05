@@ -2,50 +2,9 @@ import { SingleChoiceInput } from "@/app/builder/[id]/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { mcqActions } from "@/redux/builder/mcq-slice";
 import { PlusIcon } from "@radix-ui/react-icons";
-import {
-  MutableRefObject,
-  ReactNode,
-  createRef,
-  useEffect,
-  useRef,
-} from "react";
+import { createRef, useEffect } from "react";
 import ContentEditable from "react-contenteditable";
 import { useDispatch, useSelector } from "react-redux";
-
-const QuestionWrapper = ({
-  children,
-  question,
-  id,
-  onChange,
-  index,
-}: {
-  children: ReactNode;
-  question: string;
-  id: number;
-  onChange: (id: number, newQuestion: Partial<MCQ> & Partial<ToFQ>) => void;
-  index: number;
-}) => {
-  return (
-    <Card>
-      <CardHeader className="flex-row items-center justify-between">
-        <h3 className="font-bold text-xl">{index + 1}</h3>
-        <div>
-          <div className="bg-red-200 text-red-400 rounded-full font-bold text-center inline-block w-5 text-sm">
-            <p>C</p>
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent className="pb-10 px-10">
-        <ContentEditable
-          className="mb-6"
-          html={question}
-          onChange={(e) => onChange(id, { text: e.target.value })}
-        />
-        {children}
-      </CardContent>
-    </Card>
-  );
-};
 
 const QuestionHeader = ({ index }: { index: number }) => {
   return (
@@ -189,37 +148,6 @@ export const TrueFalseQuestion = ({
       </CardContent>
     </Card>
   );
-
-  // return (
-  //   <QuestionWrapper index={index} id={id} onChange={onUpdate} question={text}>
-  //     <div className="flex justify-center gap-10">
-  //       <input
-  //         type="radio"
-  //         name={id.toString()}
-  //         value={1}
-  //         id={id + "t"}
-  //         className="hidden"
-  //         checked={answer === 1}
-  //         onChange={() => onUpdate(id, { answer: 1 })}
-  //       />
-  //       <label htmlFor={id + "t"} className={cn}>
-  //         True
-  //       </label>
-  //       <input
-  //         type="radio"
-  //         name={id.toString()}
-  //         value={0}
-  //         id={id + "f"}
-  //         className="hidden"
-  //         checked={answer === 0}
-  //         onChange={() => onUpdate(id, { answer: 0 })}
-  //       />
-  //       <label htmlFor={id + "f"} className={cn}>
-  //         False
-  //       </label>
-  //     </div>
-  //   </QuestionWrapper>
-  // );
 };
 
 export const AddQuestionPlaceholder = ({

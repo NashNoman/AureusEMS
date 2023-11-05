@@ -5,28 +5,9 @@ import {
   AddQuestionPlaceholder,
   TrueFalseQuestion,
 } from "@/app/builder/[id]/Question";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import { mcqActions } from "@/redux/builder/mcq-slice";
-import { tofActions } from "@/redux/builder/trueFalse-slice";
-import { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-const ExamSection = ({ children }: { children: ReactNode }) => {
-  return (
-    <Card className="w-[60%]">
-      {/* Section of an exam (e.g., Single Choice) */}
-      <CardHeader>
-        <h2 className="text-xl font-bold">Single Choice</h2>
-      </CardHeader>
-      <Separator />
-      <CardContent className="bg-primary-foreground rounded-lg pt-5 flex flex-col gap-4">
-        {children}
-      </CardContent>
-    </Card>
-  );
-};
 
 const SectionHeader = ({
   questionsNum,
@@ -107,26 +88,4 @@ export const TrueFalseSection = () => {
       </div>
     </div>
   );
-
-  // const questions = useSelector((state: RootState) => state.tof?.questions);
-  // // const dispatch = useDispatch();
-
-  // const handleQuestion = (id: number, newQuestion: Partial<ToFQ>) => {
-  //   dispatch(tofActions.updateQuestion({ id, newQuestion }));
-  // };
-
-  // return (
-  //   <ExamSection>
-  //     {questions?.map((question, index) => {
-  //       return (
-  //         <TrueFalseQuestion
-  //           {...question}
-  //           onUpdate={handleQuestion}
-  //           index={index}
-  //           key={question.id}
-  //         />
-  //       );
-  //     })}
-  //   </ExamSection>
-  // );
 };
