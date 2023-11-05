@@ -28,15 +28,21 @@ const ExamSection = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const MultiChoiceHeader = ({ questionNum }: { questionNum: number }) => {
+const SectionHeader = ({
+  questionsNum,
+  sectionTitle,
+}: {
+  questionsNum: number;
+  sectionTitle: string;
+}) => {
   const sectionInfo = useSelector((state: RootState) =>
     state.examInfo.sections.find((sec) => sec.type === "mcq")
   );
   return (
     <div className="flex justify-between">
       <div>
-        <h1 className="mb-2">Multiple Choices</h1>
-        <p>Questions: {questionNum}</p>
+        <h1 className="mb-2">{sectionTitle}</h1>
+        <p>Questions: {questionsNum}</p>
       </div>
       <div className="flex items-center gap-1">
         <Input className="w-10" value={sectionInfo?.sectionGrade} />
@@ -60,7 +66,10 @@ export const MultiChoiceSection = () => {
   return (
     <div className="min-w-[80%] p-2 bg-secondary rounded-md">
       <div className="p-7">
-        <MultiChoiceHeader questionNum={questionOrder?.length as number} />
+        <SectionHeader
+          questionsNum={questionOrder?.length as number}
+          sectionTitle="Multiple Choices"
+        />
       </div>
       <div className="grid grid-cols-2 gap-4 my-4 ">
         {questionOrder?.map((qid, idx) => (
@@ -70,46 +79,6 @@ export const MultiChoiceSection = () => {
       </div>
     </div>
   );
-
-  // const questions = useSelector((state: RootState) => state.mcq?.questions);
-  // const dispatch = useDispatch();
-
-  // const questionUpdateHandler = (id: number, newQuestion: Partial<MCQ>) => {
-  //   dispatch(mcqActions.updateQuestion({ id, newQuestion }));
-  // };
-
-  // const addQuestionHandler = () => {
-  //   const newQuestion: MCQ = {
-  //     id: Math.random(),
-  //     btLevel: null,
-  //     type: "mcq",
-  //     text: "",
-  //     choices: [
-  //       { id: "A", text: "" },
-  //       { id: "B", text: "" },
-  //       { id: "C", text: "" },
-  //       { id: "D", text: "" },
-  //     ],
-  //     answer: "C",
-  //   };
-  //   dispatch(mcqActions.addQuestion(newQuestion));
-  // };
-
-  // return (
-  //   <ExamSection>
-  //     {questions?.map((question, index) => {
-  //       return (
-  //         <SingleChoiceQuestion
-  //           {...question}
-  //           onUpdate={questionUpdateHandler}
-  //           index={index}
-  //           key={question.id}
-  //         />
-  //       );
-  //     })}
-  //     <AddQuestionPlaceholder onClick={addQuestionHandler} />
-  //   </ExamSection>
-  // );
 };
 
 export const TrueFalseSection = () => {
