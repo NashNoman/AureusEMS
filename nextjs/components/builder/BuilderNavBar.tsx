@@ -3,6 +3,7 @@
 import Logo from "@/public/logo";
 import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
+import { BellIcon } from "@radix-ui/react-icons";
 
 export default function BuilderNavBar() {
   const { courseCode, courseTitle } = useSelector(
@@ -18,9 +19,12 @@ export default function BuilderNavBar() {
           {courseCode} - {courseTitle}
         </p>
       </div>
-      <Button variant="ghost" className="mx-3">
-        Logout
-      </Button>
+      <div className="flex items-center ml-2">
+        <BellIcon className="h-7 w-7 p-1 text-black cursor-pointer rounded-sm hover:bg-secondary transition-all" />
+        <Button variant="outline" className="mx-3">
+          Logout
+        </Button>
+      </div>
     </header>
   );
 }
