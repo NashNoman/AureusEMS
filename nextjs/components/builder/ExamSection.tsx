@@ -4,8 +4,8 @@ import {
   SingleChoiceQuestion,
   AddQuestionPlaceholder,
   TrueFalseQuestion,
-} from "@/app/builder/[id]/Question";
-import SectionWrapper from "@/app/builder/[id]/SectionWrapper";
+} from "@/components/builder/Question";
+import SectionWrapper from "@/components/builder/SectionWrapper";
 import { Input } from "@/components/ui/input";
 import { mcqActions } from "@/redux/builder/mcq-slice";
 import { useDispatch, useSelector } from "react-redux";

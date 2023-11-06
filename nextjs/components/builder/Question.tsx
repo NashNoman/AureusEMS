@@ -1,4 +1,4 @@
-import { SingleChoiceInput } from "@/app/builder/[id]/Input";
+import { SingleChoiceInput } from "@/components/builder/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { mcqActions } from "@/redux/builder/mcq-slice";
 import { tofActions } from "@/redux/builder/trueFalse-slice";

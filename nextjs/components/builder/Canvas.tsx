@@ -3,7 +3,7 @@
 import {
   MultiChoiceSection,
   TrueFalseSection,
-} from "@/app/builder/[id]/ExamSection";
+} from "@/components/builder/ExamSection";
 import { useSelector } from "react-redux";
 
 const sectionType = new Map<string, () => JSX.Element>([

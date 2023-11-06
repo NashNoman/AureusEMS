@@ -1,5 +1,5 @@
-import BuilderNavBar from "@/app/builder/[id]/BuilderNavBar";
-import ReduxProvider from "@/app/builder/[id]/ReduxProvider";
+import BuilderNavBar from "@/components/builder/BuilderNavBar";
+import ReduxProvider from "@/lib/ReduxProvider";
 import { ReactNode } from "react";
 
 export const metadata = {

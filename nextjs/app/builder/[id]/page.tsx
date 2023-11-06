@@ -1,5 +1,5 @@
-import Canvas from "@/app/builder/[id]/Canvas";
-import SideMenu from "@/app/builder/[id]/SideMenu";
+import Canvas from "@/components/builder/Canvas";
+import SideMenu from "@/components/builder/SideMenu";
 
 export default function Builder() {
   return (
