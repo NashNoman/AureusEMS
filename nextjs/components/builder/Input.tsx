@@ -2,7 +2,7 @@
 
 import ContentEditable from "react-contenteditable";
 
-export const SingleChoiceInput = ({
+export const MCQInput = ({
   id,
   text,
   isChecked,

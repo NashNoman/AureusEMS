@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  SingleChoiceQuestion,
+  MultiChoiceQuestion,
   AddQuestionPlaceholder,
   TrueFalseQuestion,
 } from "@/components/builder/Question";
@@ -56,7 +56,7 @@ export const MultiChoiceSection = () => {
       </div>
       <div className="grid grid-cols-2 gap-4 my-4 auto-rows-mcq">
         {questionOrder?.map((qid, idx) => (
-          <SingleChoiceQuestion key={qid} id={qid} index={idx} />
+          <MultiChoiceQuestion key={qid} id={qid} index={idx} />
         ))}
         <AddQuestionPlaceholder onClick={addNewQuestion} />
       </div>

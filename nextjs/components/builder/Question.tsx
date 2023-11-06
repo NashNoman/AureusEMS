@@ -1,4 +1,4 @@
-import { SingleChoiceInput } from "@/components/builder/Input";
+import { MCQInput } from "@/components/builder/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { mcqActions } from "@/redux/builder/mcq-slice";
 import { tofActions } from "@/redux/builder/trueFalse-slice";
@@ -20,7 +20,7 @@ const QuestionHeader = ({ index }: { index: number }) => {
   );
 };
 
-export const SingleChoiceQuestion = ({
+export const MultiChoiceQuestion = ({
   id,
   index,
 }: {
@@ -65,7 +65,7 @@ export const SingleChoiceQuestion = ({
         />
         <div className="flex flex-col gap-4">
           {question.choices.map((choice) => (
-            <SingleChoiceInput
+            <MCQInput
               {...choice}
               qid={id}
               onUpdate={updateQuestion}
