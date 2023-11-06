@@ -1,6 +1,7 @@
 import { SingleChoiceInput } from "@/app/builder/[id]/Input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { mcqActions } from "@/redux/builder/mcq-slice";
+import { tofActions } from "@/redux/builder/trueFalse-slice";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { createRef, useEffect } from "react";
 import ContentEditable from "react-contenteditable";
@@ -98,14 +99,16 @@ export const TrueFalseQuestion = ({
   }, []);
 
   const updateQuestion = (newQuestion: Partial<ToFQ>) => {
-    dispatch(mcqActions.updateQuestion({ id, newQuestion }));
+    dispatch(tofActions.updateQuestion({ id, newQuestion }));
   };
 
   const cn =
-    "bg-gray-200 px-20 py-2 cursor-pointer font-semibold text-gray-600 rounded-sm hover:shadow-sm transition-shadow";
+    "border bg-gray-200 px-20 py-2 cursor-pointer font-semibold text-gray-600 rounded-sm hover:shadow-sm transition-shadow";
+
+  const answer = question.answer === 1;
 
   return (
-    <Card className="min-h-[10rem]">
+    <Card className="">
       <QuestionHeader index={index} />
       <CardContent className="h-full">
         <ContentEditable
@@ -125,10 +128,15 @@ export const TrueFalseQuestion = ({
               value={1}
               id={id + "t"}
               className="hidden"
-              checked={question.answer === 1}
+              checked={answer}
               onChange={() => updateQuestion({ answer: 1 })}
             />
-            <label htmlFor={id + "t"} className={cn}>
+            <label
+              htmlFor={id + "t"}
+              className={`${cn} ${
+                answer && "border-green-300 bg-green-50 text-primary"
+              }`}
+            >
               True
             </label>
             <input
@@ -137,10 +145,15 @@ export const TrueFalseQuestion = ({
               value={0}
               id={id + "f"}
               className="hidden"
-              checked={question.answer === 0}
+              checked={!answer}
               onChange={() => updateQuestion({ answer: 0 })}
             />
-            <label htmlFor={id + "f"} className={cn}>
+            <label
+              htmlFor={id + "f"}
+              className={`${cn} ${
+                !answer && "border-red-300 bg-red-50 text-primary"
+              }`}
+            >
               False
             </label>
           </div>
