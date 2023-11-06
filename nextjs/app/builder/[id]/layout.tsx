@@ -9,7 +9,7 @@ export const metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html>
-      <body className="">
+      <body className="overflow-hidden h-screen">
         <ReduxProvider>
           <BuilderNavBar />
           {children}

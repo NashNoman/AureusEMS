@@ -15,7 +15,7 @@ export default function Canvas() {
   const sections = useSelector((state: RootState) => state.examInfo.sections);
 
   return (
-    <main className="flex flex-col items-center pb-10 pt-5 gap-4 container">
+    <main className="flex flex-col items-center pt-5 gap-4 container">
       {sections.map(({ type }) => {
         const ExamSection = sectionType.get(type);
         if (typeof ExamSection === "undefined") return;
