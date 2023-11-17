@@ -1,11 +1,10 @@
-export function SimpleLogo(props) {
+import { SVGProps } from "react";
+
+export function SimpleLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlSpace="preserve"
-      style={{
-        enableBackground: "new 0 0 1000 1000",
-      }}
       viewBox="0 0 1000 1000"
       {...props}
     >
