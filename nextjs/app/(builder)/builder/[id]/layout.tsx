@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className="h-screen">
         <BuilderNavBar />
-        <main>{children}</main>
+        <main className="flex flex-col py-10 items-center">{children}</main>
       </body>
     </html>
   );

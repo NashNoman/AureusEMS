@@ -1,3 +1,9 @@
+import AddSectionPlaceholder from "@/components/builder/AddSectionPlaceholder";
+
 export default function Builder() {
-  return <div>Builder</div>;
+  return (
+    <>
+      <AddSectionPlaceholder />
+    </>
+  );
 }
