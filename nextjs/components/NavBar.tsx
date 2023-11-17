@@ -5,7 +5,7 @@ import React from "react";
 
 export function BuilderNavBar() {
   return (
-    <div className="h-12 px-2 border-b flex justify-between items-center">
+    <div className="h-12 px-2 border-b flex justify-between items-center sticky top-0 w-screen bg-background">
       <Link href="/" className="cursor-pointer">
         {<SimpleLogo className="h-9" />}
       </Link>
