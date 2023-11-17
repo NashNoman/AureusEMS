@@ -1,5 +1,5 @@
 import { BuilderNavBar } from "@/components/NavBar";
-import "../../globals.css";
+import "@/app/globals.css";
 import { ReactNode } from "react";
 
 export const metadata = {
