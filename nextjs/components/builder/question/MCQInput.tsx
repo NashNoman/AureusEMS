@@ -5,13 +5,12 @@ import { useState } from "react";
 const nums = [1, 2, 3, 4];
 
 type MCQInputProps = {
+  qid: number;
   choices: { id: string; text: string }[];
   answer: string;
 };
 
-export default function MCQInput({ choices, answer }: MCQInputProps) {
-  const uid = Math.random();
-
+export default function MCQInput({ qid, choices, answer }: MCQInputProps) {
   return (
     <div className="mb-4">
       {choices.map((choice, index) => {
@@ -19,7 +18,7 @@ export default function MCQInput({ choices, answer }: MCQInputProps) {
           <Input
             key={choice.id}
             order={index}
-            qid={uid}
+            qid={qid}
             choice={choice}
             answer={answer}
           />
@@ -45,8 +44,8 @@ const Input = ({
   return (
     <div
       key={order}
-      className={`my-2 w-full flex gap-2 py-2 pl-4 rounded-md transition-all hover:shadow-sm ${
-        choice.id === answer && "bg-green-100 outline-green-200 "
+      className={`my-2 w-full flex gap-2 py-2 pl-4 rounded-md transition-all outline outline-transparent hover:outline-accent ${
+        choice.id === answer && "bg-green-50 !outline-green-200 "
       }`}
     >
       <input

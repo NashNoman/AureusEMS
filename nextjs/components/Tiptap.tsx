@@ -14,7 +14,7 @@ export default function Tiptap({ content }: { content: string }) {
     editorProps: {
       attributes: {
         class:
-          "py-1 px-2 mx-4 font-semibold rounded-lg outline-none focus:bg-accent text-semibold",
+          "pt-1 pb-3 px-2 font-semibold rounded-lg outline-none focus:bg-accent text-semibold",
       },
     },
   });

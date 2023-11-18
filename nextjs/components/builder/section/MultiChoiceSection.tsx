@@ -1,10 +1,10 @@
-import BuilderQuestionWrapper from "@/components/builder/question/BuilderQuestionWrapper";
-import MCQInput from "@/components/builder/question/MCQInput";
+import { mcqActions } from "@/builder/mcq-slice";
+import MCQuestion from "@/components/builder/question/MCQuestion";
 import SectionBody from "@/components/builder/section/SectionBody";
 import SectionHeader from "@/components/builder/section/SectionHeader";
 import SectionWrapper from "@/components/builder/section/SectionWrapper";
 import { Separator } from "@/components/ui/separator";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function MultiChoiceSection() {
   const sectionInfo = useSelector(
@@ -26,9 +26,14 @@ export default function MultiChoiceSection() {
       <SectionBody>
         {sectionQuestions.map((question, index) => {
           return (
-            <BuilderQuestionWrapper text={question.text} num={index}>
-              <MCQInput choices={question.choices} answer={question.answer} />
-            </BuilderQuestionWrapper>
+            <MCQuestion
+              key={index}
+              id={question.id}
+              text={question.text}
+              choices={question.choices}
+              answer={question.answer}
+              num={index}
+            />
           );
         })}
       </SectionBody>

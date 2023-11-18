@@ -1,16 +1,13 @@
-import Tiptap from "@/components/Tiptap";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { ReactNode } from "react";
 
 type WrapperProps = {
   children: ReactNode;
-  text: string;
   num: number;
 };
 
 export default function BuilderQuestionWrapper({
   children,
-  text,
   num,
 }: WrapperProps) {
   return (
@@ -24,7 +21,6 @@ export default function BuilderQuestionWrapper({
         </div>
         <Cross1Icon className="cursor-pointer text-muted-foreground hover:bg-accent transition-all p-1 h-6 w-6 rounded-full" />
       </div>
-      <Tiptap content={text} />
       <div className="px-6">{children}</div>
     </div>
   );

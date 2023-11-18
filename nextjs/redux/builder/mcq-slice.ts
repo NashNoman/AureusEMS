@@ -53,12 +53,12 @@ const mcqSlice = createSlice({
     },
   ],
   reducers: {
-    //   updateQuestion(state, action) {
-    //     const { id, newQuestion } = action.payload;
-    //     const oldQuestionIndex = state.findIndex((q) => q.id === id);
-    //     const oldQuestion = state[oldQuestionIndex];
-    //     state[oldQuestionIndex] = Object.assign(oldQuestion, newQuestion);
-    //   },
+    updateQuestion(state, action) {
+      const { id, newQuestion } = action.payload;
+      const oldQuestionIndex = state.findIndex((q) => q.id === id);
+      const oldQuestion = state[oldQuestionIndex];
+      state[oldQuestionIndex] = Object.assign(oldQuestion, newQuestion);
+    },
     //   addQuestion(state) {
     //     console.log("Adding");
     //     const question = {
