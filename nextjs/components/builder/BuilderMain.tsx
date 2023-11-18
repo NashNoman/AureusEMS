@@ -11,7 +11,7 @@ export default function BuilderMain() {
 
   return (
     <ScrollArea className="flex-grow">
-      <main className="flex flex-col pb-20 pt-4 items-center gap-4 ">
+      <main className="flex flex-col pb-20 pt-4 items-center gap-4 container">
         {sectionsInfo.map((sec) => {
           if (sec.type === "mcq") {
             return <MultiChoiceSection />;

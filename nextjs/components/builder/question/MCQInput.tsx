@@ -45,7 +45,7 @@ const Input = ({
   return (
     <div
       key={order}
-      className={`my-2 w-full flex gap-1 p-2 rounded-md transition-all hover:shadow-sm ${
+      className={`my-2 w-full flex gap-2 py-2 pl-4 rounded-md transition-all hover:shadow-sm ${
         choice.id === answer && "bg-green-100 outline-green-200 "
       }`}
     >
@@ -53,15 +53,17 @@ const Input = ({
         type="radio"
         name={qid + ""}
         id={`${qid} ${order}`}
-        className=""
+        className="hidden"
         onChange={(e) => {}}
       />
+
       <label
         htmlFor={`${qid} ${order}`}
         className="font-semibold cursor-pointer"
       >
-        {letters[order]})
+        {letters[order]}
       </label>
+
       <input
         type="text"
         className="flex-grow outline-none bg-transparent"

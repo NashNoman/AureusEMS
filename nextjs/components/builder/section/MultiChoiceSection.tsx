@@ -19,8 +19,8 @@ export default function MultiChoiceSection() {
     <SectionWrapper>
       <SectionHeader
         title={"Multiple Choices"}
-        questionsNum={0}
-        mark={sectionInfo.sectionGrade}
+        questionsNum={sectionQuestions.length}
+        grade={sectionInfo.sectionGrade}
       />
       <Separator className="my-4" />
       <SectionBody>
