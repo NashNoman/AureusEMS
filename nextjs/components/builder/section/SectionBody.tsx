@@ -14,11 +14,6 @@ export default function SectionBody({
       className={`grid gap-4 ${singleColumn ? "grid-cols-1" : "grid-cols-2"}`}
     >
       {children}
-      {/* {array.map((num) => (
-        <BuilderQuestionWrapper key={num}>
-          <MCQInput />
-        </BuilderQuestionWrapper>
-      ))} */}
     </div>
   );
 }
