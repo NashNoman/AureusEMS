@@ -33,7 +33,7 @@ const mcqSlice = createSlice({
           id: "C",
           text: "Computer is a programmable electronic device that stores, retrieves, and processes the data",
         },
-        { id: "D", text: "All of the mentioned" },
+        { id: "D", text: "All of the mentioned above" },
       ],
       answer: "D",
     },
@@ -71,6 +71,11 @@ const mcqSlice = createSlice({
       const { qid, answer } = action.payload;
       const question = state.find((q) => q.id === qid);
       question!.answer = answer;
+    },
+    deleteQuestion(state, action) {
+      const { num } = action.payload;
+      state.splice(num, 1);
+      console.log(state);
     },
     addQuestion(state) {
       const question = {

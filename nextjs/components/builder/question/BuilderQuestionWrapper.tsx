@@ -4,11 +4,13 @@ import { ReactNode } from "react";
 type WrapperProps = {
   children: ReactNode;
   num: number;
+  onDelete: () => void;
 };
 
 export default function BuilderQuestionWrapper({
   children,
   num,
+  onDelete,
 }: WrapperProps) {
   return (
     <div className="bg-background min-h-[16rem] pb-2 rounded-sm outline outline-transparent focus-within:!outline-gray-400 focus-within:outline-2 hover:shadow-md focus-within:shadow-md hover:outline-border transition-all">
@@ -19,7 +21,10 @@ export default function BuilderQuestionWrapper({
             R
           </span>
         </div>
-        <Cross1Icon className="cursor-pointer text-muted-foreground hover:bg-accent transition-all p-1 h-6 w-6 rounded-full" />
+        <Cross1Icon
+          className="cursor-pointer text-muted-foreground hover:bg-accent transition-all p-1 h-6 w-6 rounded-full"
+          onClick={() => onDelete()}
+        />
       </div>
       <div className="px-6">{children}</div>
     </div>

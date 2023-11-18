@@ -25,8 +25,12 @@ export default function MCQuestion({
     dispatch(mcqActions.updateQuestion({ id, newQuestion: { text } }));
   };
 
+  const deleteQuestionHandler = () => {
+    dispatch(mcqActions.deleteQuestion({ num }));
+  };
+
   return (
-    <BuilderQuestionWrapper num={num}>
+    <BuilderQuestionWrapper num={num} onDelete={deleteQuestionHandler}>
       <Tiptap content={text} onUpdate={updateTextHandler} />
       <MCQInput qid={id} choices={choices} answer={answer} />
     </BuilderQuestionWrapper>
