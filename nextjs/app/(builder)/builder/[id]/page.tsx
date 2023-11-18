@@ -1,11 +1,13 @@
-import AddSectionPlaceholder from "@/components/builder/AddSectionPlaceholder";
-import Section from "@/components/builder/section/Section";
+"use client";
+
+import BuilderMain from "@/components/builder/BuilderMain";
+import BuilderSidebar from "@/components/builder/BuilderSidebar";
 
 export default function Builder() {
   return (
     <>
-      <Section />
-      <AddSectionPlaceholder />
+      <BuilderSidebar />
+      <BuilderMain />
     </>
   );
 }
