@@ -1,5 +1,5 @@
-import BuilderQuestionWrapper from "@/components/builder/BuilderQuestionWrapper";
-import MCQInput from "@/components/builder/MCQInput";
+import BuilderQuestionWrapper from "@/components/builder/question/BuilderQuestionWrapper";
+import MCQInput from "@/components/builder/question/MCQInput";
 
 const array = [1, 2, 3, 4, 5];
 

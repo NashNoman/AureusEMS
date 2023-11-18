@@ -1,6 +1,6 @@
-import MCQSectionBody from "@/components/builder/MCQSectionBody";
-import SectionHeader from "@/components/builder/SectionHeader";
-import SectionWrapper from "@/components/builder/SectionWrapper";
+import MCQSectionBody from "@/components/builder/section/MCQSectionBody";
+import SectionHeader from "@/components/builder/section/SectionHeader";
+import SectionWrapper from "@/components/builder/section/SectionWrapper";
 import { Separator } from "@/components/ui/separator";
 
 export default function Section() {
