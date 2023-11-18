@@ -9,8 +9,8 @@ const examInfoSlice = createSlice({
     examPercentage: 10,
     examType: "Test1",
     sectionsInfo: [
-      { type: "mcq", questionsNum: 3 },
-      { type: "tof", questionsNum: 4 },
+      { type: "mcq", sectionGrade: 5 },
+      { type: "tof", sectionGrade: 5 },
     ],
   },
   reducers: {},

@@ -1,5 +1,3 @@
-"use client";
-
 import BuilderMain from "@/components/builder/BuilderMain";
 import BuilderSidebar from "@/components/builder/BuilderSidebar";
 
