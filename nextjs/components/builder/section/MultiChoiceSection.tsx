@@ -24,8 +24,12 @@ export default function MultiChoiceSection() {
       />
       <Separator className="my-4" />
       <SectionBody>
-        {sectionQuestions.map((question) => {
-          return <div></div>;
+        {sectionQuestions.map((question, index) => {
+          return (
+            <BuilderQuestionWrapper text={question.text} num={index}>
+              <MCQInput choices={question.choices} answer={question.answer} />
+            </BuilderQuestionWrapper>
+          );
         })}
       </SectionBody>
     </SectionWrapper>
