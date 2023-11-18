@@ -3,10 +3,10 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-export default function Tiptap() {
+export default function Tiptap({ content }: { content: string }) {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: '<p class="text-semibold">Hello World!</p>',
+    content: content,
     injectCSS: false,
     parseOptions: {
       preserveWhitespace: "full",

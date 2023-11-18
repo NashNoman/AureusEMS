@@ -4,13 +4,26 @@ import { useState } from "react";
 
 const nums = [1, 2, 3, 4];
 
-export default function MCQInput() {
+type MCQInputProps = {
+  choices: { id: string; text: string }[];
+  answer: string;
+};
+
+export default function MCQInput({ choices, answer }: MCQInputProps) {
   const uid = Math.random();
 
   return (
     <div className="mb-4">
-      {nums.map((num, index) => {
-        return <Input key={num} order={index} qid={uid} />;
+      {choices.map((choice, index) => {
+        return (
+          <Input
+            key={choice.id}
+            order={index}
+            qid={uid}
+            choice={choice}
+            answer={answer}
+          />
+        );
       })}
     </div>
   );
@@ -18,22 +31,30 @@ export default function MCQInput() {
 
 const letters = ["A", "B", "C", "D"];
 
-const Input = ({ order, qid }: { order: number; qid: number }) => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-
+const Input = ({
+  order,
+  qid,
+  choice,
+  answer,
+}: {
+  order: number;
+  qid: number;
+  choice: { id: string; text: string };
+  answer: string;
+}) => {
   return (
     <div
       key={order}
       className={`my-2 w-full flex gap-1 p-2 rounded-md transition-all hover:shadow-sm ${
-        isChecked && "bg-green-100 outline-green-200 "
+        choice.id === answer && "bg-green-100 outline-green-200 "
       }`}
     >
       <input
         type="radio"
         name={qid + ""}
         id={`${qid} ${order}`}
-        className="hidden"
-        onChange={(e) => setIsChecked(e.target.checked)}
+        className=""
+        onChange={(e) => {}}
       />
       <label
         htmlFor={`${qid} ${order}`}
@@ -44,7 +65,7 @@ const Input = ({ order, qid }: { order: number; qid: number }) => {
       <input
         type="text"
         className="flex-grow outline-none bg-transparent"
-        defaultValue={`Answer ${order}`}
+        defaultValue={choice.text}
       />
     </div>
   );
