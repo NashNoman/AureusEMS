@@ -3,11 +3,16 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-export default function Tiptap({ content }: { content: string }) {
+export default function Tiptap({
+  content,
+  onUpdate,
+}: {
+  content: string;
+  onUpdate: (text: string) => void;
+}) {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: content,
-    injectCSS: false,
+    content: content || "",
     parseOptions: {
       preserveWhitespace: "full",
     },
@@ -17,6 +22,7 @@ export default function Tiptap({ content }: { content: string }) {
           "pt-1 pb-3 px-2 font-semibold rounded-lg outline-none focus:bg-accent text-semibold",
       },
     },
+    onUpdate: ({ editor }) => onUpdate(editor.getHTML()),
   });
 
   return <EditorContent editor={editor} />;

@@ -4,7 +4,7 @@ import SectionBody from "@/components/builder/section/SectionBody";
 import SectionHeader from "@/components/builder/section/SectionHeader";
 import SectionWrapper from "@/components/builder/section/SectionWrapper";
 import { Separator } from "@/components/ui/separator";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function MultiChoiceSection() {
   const sectionInfo = useSelector(

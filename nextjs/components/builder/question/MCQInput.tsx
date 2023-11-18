@@ -1,9 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
-const nums = [1, 2, 3, 4];
-
 type MCQInputProps = {
   qid: number;
   choices: { id: string; text: string }[];
