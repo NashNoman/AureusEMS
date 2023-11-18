@@ -1,4 +1,4 @@
-FROM next-base:latest
+FROM next-base-image:latest
 
 COPY ./package*.json .
 
