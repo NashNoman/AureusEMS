@@ -1,10 +1,10 @@
 import AddSectionPlaceholder from "@/components/builder/AddSectionPlaceholder";
-import ExamSection from "@/components/builder/Section";
+import Section from "@/components/builder/section/Section";
 
 export default function Builder() {
   return (
     <>
-      <ExamSection />
+      <Section />
       <AddSectionPlaceholder />
     </>
   );
