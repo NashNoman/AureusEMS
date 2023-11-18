@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const examInfoSlice = createSlice({
+  name: "examInfo",
   initialState: {
+    examId: 123,
     courseTitle: "Introduction to Computers",
     courseCode: "CSCI100",
-    examId: 123,
     examPercentage: 10,
     examType: "Test1",
-    sections: [
-      // { type: "mcq", sectionPercentage: 5 },
-      // { type: "tof", sectionPercentage: 5 },
-    ],
   },
-  name: "examInfoInfo",
   reducers: {},
 });
 
