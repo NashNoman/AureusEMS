@@ -1,3 +1,3 @@
 export default function BuilderSidebar() {
-  return <aside>BuilderSidebar</aside>;
+  return <aside className="h-full border-r w-1/6">BuilderSidebar</aside>;
 }
