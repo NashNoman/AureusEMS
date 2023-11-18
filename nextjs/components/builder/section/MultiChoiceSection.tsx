@@ -1,4 +1,3 @@
-import { mcqActions } from "@/builder/mcq-slice";
 import MCQuestion from "@/components/builder/question/MCQuestion";
 import SectionBody from "@/components/builder/section/SectionBody";
 import SectionHeader from "@/components/builder/section/SectionHeader";

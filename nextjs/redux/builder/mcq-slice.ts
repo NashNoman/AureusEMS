@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const mcqSlice = createSlice({
-  name: "mcq",
   initialState: [
     {
       id: 19,
-      type: "mcq",
+      type: "sc",
       btLevel: 1,
       text: "What does 'CPU' stand for?",
       choices: [
@@ -18,7 +17,7 @@ const mcqSlice = createSlice({
     },
     {
       id: 37,
-      type: "mcq",
+      type: "sc",
       btLevel: 2,
       text: "Which of the following is the correct definition of Computer?",
       choices: [
@@ -40,7 +39,7 @@ const mcqSlice = createSlice({
     },
     {
       id: 65,
-      type: "mcq",
+      type: "sc",
       btLevel: 1,
       text: "Which of the following language does the computer understand:",
       choices: [
@@ -52,6 +51,7 @@ const mcqSlice = createSlice({
       answer: "C",
     },
   ],
+  name: "mcq",
   reducers: {
     updateQuestion(state, action) {
       const { id, newQuestion } = action.payload;
@@ -59,23 +59,30 @@ const mcqSlice = createSlice({
       const oldQuestion = state[oldQuestionIndex];
       state[oldQuestionIndex] = Object.assign(oldQuestion, newQuestion);
     },
-    //   addQuestion(state) {
-    //     console.log("Adding");
-    //     const question = {
-    //       id: Math.random(),
-    //       btLevel: 0,
-    //       type: "mcq",
-    //       text: "",
-    //       choices: [
-    //         { id: "A", text: "" },
-    //         { id: "B", text: "" },
-    //         { id: "C", text: "" },
-    //         { id: "D", text: "" },
-    //       ],
-    //       answer: "C",
-    //     };
-    //     state.push(question);
-    //   },
+    updateChoice(state, action) {
+      const { qid, id, text } = action.payload;
+      const questionIndex = state.findIndex((q) => q.id === qid);
+      const choiceIndex = state[questionIndex].choices.findIndex(
+        (ch) => ch.id === id
+      );
+      state[questionIndex].choices[choiceIndex]!.text = text;
+    },
+    addQuestion(state) {
+      const question = {
+        id: Math.random(),
+        btLevel: 0,
+        type: "mcq",
+        text: "",
+        choices: [
+          { id: "A", text: "" },
+          { id: "B", text: "" },
+          { id: "C", text: "" },
+          { id: "D", text: "" },
+        ],
+        answer: "C",
+      };
+      state.push(question);
+    },
   },
 });
 

@@ -1,4 +1,4 @@
-import { mcqActions } from "@/builder/mcq-slice";
+import { mcqActions } from "@/redux/builder/mcq-slice";
 import Tiptap from "@/components/Tiptap";
 import BuilderQuestionWrapper from "@/components/builder/question/BuilderQuestionWrapper";
 import MCQInput from "@/components/builder/question/MCQInput";

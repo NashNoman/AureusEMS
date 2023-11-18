@@ -1,5 +1,8 @@
 "use client";
 
+import { mcqActions } from "@/redux/builder/mcq-slice";
+import { useDispatch } from "react-redux";
+
 type MCQInputProps = {
   qid: number;
   choices: { id: string; text: string }[];
@@ -7,6 +10,14 @@ type MCQInputProps = {
 };
 
 export default function MCQInput({ qid, choices, answer }: MCQInputProps) {
+  const dispatch = useDispatch();
+
+  const choiceUpdateHandler = (id: string, text: string) => {
+    dispatch(mcqActions.updateChoice({ qid, id, text }));
+  };
+
+  if (qid === 19) console.log(choices);
+
   return (
     <div className="mb-4">
       {choices.map((choice, index) => {
@@ -17,6 +28,7 @@ export default function MCQInput({ qid, choices, answer }: MCQInputProps) {
             qid={qid}
             choice={choice}
             answer={answer}
+            onUpdate={choiceUpdateHandler}
           />
         );
       })}
@@ -31,11 +43,13 @@ const Input = ({
   qid,
   choice,
   answer,
+  onUpdate,
 }: {
   order: number;
   qid: number;
   choice: { id: string; text: string };
   answer: string;
+  onUpdate: (id: string, text: string) => void;
 }) => {
   return (
     <div
@@ -63,6 +77,7 @@ const Input = ({
         type="text"
         className="flex-grow outline-none bg-transparent"
         defaultValue={choice.text}
+        onChange={(e) => onUpdate(choice.id, e.target.value)}
       />
     </div>
   );
