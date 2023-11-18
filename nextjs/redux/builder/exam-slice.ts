@@ -8,6 +8,10 @@ const examInfoSlice = createSlice({
     courseCode: "CSCI100",
     examPercentage: 10,
     examType: "Test1",
+    sectionsInfo: [
+      { type: "mcq", questionsNum: 3 },
+      { type: "tof", questionsNum: 4 },
+    ],
   },
   reducers: {},
 });
