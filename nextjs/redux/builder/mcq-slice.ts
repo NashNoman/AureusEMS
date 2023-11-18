@@ -67,6 +67,11 @@ const mcqSlice = createSlice({
       );
       state[questionIndex].choices[choiceIndex]!.text = text;
     },
+    setAnswer(state, action) {
+      const { qid, answer } = action.payload;
+      const question = state.find((q) => q.id === qid);
+      question!.answer = answer;
+    },
     addQuestion(state) {
       const question = {
         id: Math.random(),

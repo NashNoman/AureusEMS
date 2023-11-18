@@ -16,7 +16,9 @@ export default function MCQInput({ qid, choices, answer }: MCQInputProps) {
     dispatch(mcqActions.updateChoice({ qid, id, text }));
   };
 
-  if (qid === 19) console.log(choices);
+  const setAnswerHandler = (id: string) => {
+    dispatch(mcqActions.setAnswer({ qid, answer: id }));
+  };
 
   return (
     <div className="mb-4">
@@ -28,7 +30,8 @@ export default function MCQInput({ qid, choices, answer }: MCQInputProps) {
             qid={qid}
             choice={choice}
             answer={answer}
-            onUpdate={choiceUpdateHandler}
+            onChoiceUpdate={choiceUpdateHandler}
+            onSetAnswer={setAnswerHandler}
           />
         );
       })}
@@ -43,13 +46,15 @@ const Input = ({
   qid,
   choice,
   answer,
-  onUpdate,
+  onChoiceUpdate,
+  onSetAnswer,
 }: {
   order: number;
   qid: number;
   choice: { id: string; text: string };
   answer: string;
-  onUpdate: (id: string, text: string) => void;
+  onChoiceUpdate: (id: string, text: string) => void;
+  onSetAnswer: (id: string) => void;
 }) => {
   return (
     <div
@@ -62,8 +67,9 @@ const Input = ({
         type="radio"
         name={qid + ""}
         id={`${qid} ${order}`}
+        value={choice.id}
         className="hidden"
-        onChange={(e) => {}}
+        onChange={() => onSetAnswer(choice.id)}
       />
 
       <label
@@ -77,7 +83,7 @@ const Input = ({
         type="text"
         className="flex-grow outline-none bg-transparent"
         defaultValue={choice.text}
-        onChange={(e) => onUpdate(choice.id, e.target.value)}
+        onChange={(e) => onChoiceUpdate(choice.id, e.target.value)}
       />
     </div>
   );
