@@ -14,12 +14,18 @@ const examSectionSchema = new mongoose.Schema(
 const examSchema = new mongoose.Schema({
   title: String,
   course: { type: mongoose.SchemaTypes.ObjectId, ref: "Course" },
+  status: {
+    type: String,
+    enum: ["draft", "published", "taken"],
+    default: "draft",
+  },
   percentage: {
     type: Number,
     min: 5,
     max: 40,
   },
-  create: { type: Date, default: Date.now },
+  updated: { type: Date, default: Date.now },
+  created: { type: Date, default: Date.now },
   sections: [examSectionSchema],
 });
 
