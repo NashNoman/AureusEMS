@@ -41,7 +41,10 @@ export default async function CoursesHome() {
             {courses.map((course) => {
               const { id, code, title, instructor, clo } = course;
               return (
-                <div className="cursor-pointer flex text-sm justify-between px-20 pr-36 items-center h-16 border-b border-accent hover:bg-accent transition-colors">
+                <div
+                  key={id}
+                  className="cursor-pointer flex text-sm justify-between px-20 pr-36 items-center h-16 border-b border-accent hover:bg-accent transition-colors"
+                >
                   <div className="w-24">{code}</div>
                   <div className="flex-grow">{title}</div>
                   <div className="w-64">{`${instructor.firstName} ${instructor.lastName}`}</div>
