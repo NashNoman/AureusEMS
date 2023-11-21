@@ -1,16 +1,8 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { SearchIcon } from "lucide-react";
+import { CheckCircle2, SearchIcon, XCircle } from "lucide-react";
 
 const columns = ["CODE", "TITLE", "INSTRUCTOR", "CLO"];
-const course = [
+const courses = [
   {
     id: "asdaf",
     code: "CSCI100",
@@ -61,28 +53,31 @@ export default async function CoursesHome() {
       </header>
       <h1 className="ml-20">Information Technology - CSIT</h1>
       <ScrollArea>
-        <main>
-          <Table className="mt-14 border-b border-accent">
-            <TableHeader>
-              <TableRow className="border-accent">
-                {columns.map((col) => (
-                  <TableHead key={col} className="">
-                    {col}
-                  </TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {course.map((c) => (
-                <TableRow key={c.id} className="border-accent h-16">
-                  <TableCell>{c.code}</TableCell>
-                  <TableCell>{c.title}</TableCell>
-                  <TableCell>{c.instructor}</TableCell>
-                  <TableCell>{c.clo ? "true" : "false"}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <main className="mt-14">
+          <div className="flex text-xs text-muted-foreground justify-between pr-36 px-20 items-center h-10 border-b border-accent">
+            <div className="w-24">CODE</div>
+            <div className="flex-grow">TITLE</div>
+            <div className="w-64">INSTRUCTOR</div>
+            <div className="w-24 text-center">CLO</div>
+          </div>
+          <div>
+            {courses.map((course) => {
+              return (
+                <div className="cursor-pointer flex text-sm justify-between px-20 pr-36 items-center h-16 border-b border-accent hover:bg-accent transition-colors">
+                  <div className="w-24">{course.code}</div>
+                  <div className="flex-grow">{course.title}</div>
+                  <div className="w-64">{course.instructor}</div>
+                  <div className="w-24">
+                    {course.clo ? (
+                      <CheckCircle2 className="m-auto w-5" />
+                    ) : (
+                      <XCircle className="m-auto h-5 text-destructive" />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </main>
       </ScrollArea>
     </div>
