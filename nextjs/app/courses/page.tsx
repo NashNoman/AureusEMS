@@ -1,3 +1,4 @@
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { dbConnect } from "@/lib/db";
 import Course from "@/models/Course";
@@ -41,21 +42,21 @@ export default async function CoursesHome() {
             {courses.map((course) => {
               const { id, code, title, instructor, clo } = course;
               return (
-                <div
-                  key={id}
-                  className="cursor-pointer flex text-sm justify-between px-20 pr-36 items-center h-16 border-b border-accent hover:bg-accent transition-colors"
-                >
-                  <div className="w-24">{code}</div>
-                  <div className="flex-grow">{title}</div>
-                  <div className="w-64">{`${instructor.firstName} ${instructor.lastName}`}</div>
-                  <div className="w-24">
-                    {clo ? (
-                      <CheckCircle2 className="m-auto w-5" />
-                    ) : (
-                      <XCircle className="m-auto h-5 text-destructive" />
-                    )}
-                  </div>
-                </div>
+                <Dialog key={id}>
+                  <DialogTrigger className="w-full text-start cursor-pointer flex text-sm justify-between px-20 pr-36 items-center h-16 border-b border-accent hover:bg-accent transition-colors">
+                    <div className="w-24">{code}</div>
+                    <div className="flex-grow">{title}</div>
+                    <div className="w-64">{`${instructor.firstName} ${instructor.lastName}`}</div>
+                    <div className="w-24">
+                      {clo ? (
+                        <CheckCircle2 className="m-auto w-5" />
+                      ) : (
+                        <XCircle className="m-auto h-5 text-destructive" />
+                      )}
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent>{/* TODO: create dialog UI */}</DialogContent>
+                </Dialog>
               );
             })}
           </div>
