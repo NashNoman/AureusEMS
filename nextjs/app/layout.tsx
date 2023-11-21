@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Props) {
         }
       >
         <NavBar />
-        <div className="h-full w-full pt-12">{children}</div>
+        <div className="h-full w-full pt-8">{children}</div>
       </body>
     </html>
   );

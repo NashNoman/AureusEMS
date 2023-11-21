@@ -16,10 +16,10 @@ import NotificationButton from "@/components/NotificationButton";
 
 export default function NavBar() {
   return (
-    <aside className="h-full border-r border-border w-[19rem] pt-12 pb-8 flex flex-col gap-14 px-6 justify-between">
+    <aside className="h-full border-r border-border w-96 py-8 flex flex-col gap-14 px-6 justify-between">
       <div className="pl-4 flex items-center justify-between">
         <Link href="/">
-          <Image src={logo} alt="Aureus" className="w-32 dark:invert" />
+          <Image src={logo} alt="Aureus" className="w-40 dark:invert" />
         </Link>
         <NotificationButton />
       </div>
@@ -52,12 +52,9 @@ export default function NavBar() {
         </ul>
       </nav>
       <div className="flex flex-col gap-3">
-        <Button
-          size="lg"
-          className="bg-blue-600 text-white justify-between w-full px-6 hover:bg-blue-700 active:bg-blue-800"
-        >
+        <Button className="bg-blue-600 text-white w-full py-6 px-4 gap-2 justify-start hover:bg-blue-700 active:bg-blue-800">
           New Exam
-          <span className="text-gray-300 font-normal">Alt+N</span>
+          <kbd className="text-gray-300 font-normal text-xs">Alt N</kbd>
         </Button>
         <Separator />
         <div className="flex justify-between items-center font-semibold text-foreground/80 pl-2">
