@@ -14,9 +14,7 @@ export default function NotificationButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
-        <Button variant="ghost" size="icon">
-          <BellIcon className="w-[1.1rem] text-muted-foreground fill-muted-foreground" />
-        </Button>
+        <BellIcon className="w-[1.1rem] text-muted-foreground fill-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel className="w-52">Notifications</DropdownMenuLabel>

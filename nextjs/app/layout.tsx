@@ -1,6 +1,5 @@
 import "./globals.css";
 import NavBar from "@/components/NavBar";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 
@@ -21,7 +20,7 @@ export default function RootLayout({ children }: Props) {
         }
       >
         <NavBar />
-        <ScrollArea className="h-full w-full pt-14">{children}</ScrollArea>
+        <div className="h-full w-full pt-12">{children}</div>
       </body>
     </html>
   );
