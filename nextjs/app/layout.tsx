@@ -17,13 +17,16 @@ export default function RootLayout({ children }: Props) {
     <html lang="en">
       <body
         className={
-          "h-screen bg-background text-primary flex " + inter.className
+          "h-screen bg-background text-primary flex overflow-hidden " +
+          inter.className
         }
       >
         <NavBar />
-        <div className="h-full w-full pt-8 overflow-hidden">
+        <div className="h-full w-full pt-8 flex flex-col">
           <Header />
-          {children}
+          <main className="flex flex-col flex-grow overflow-hidden">
+            {children}
+          </main>
         </div>
       </body>
     </html>

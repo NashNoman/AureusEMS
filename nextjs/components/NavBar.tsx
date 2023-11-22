@@ -16,7 +16,7 @@ import NotificationButton from "@/components/NotificationButton";
 
 export default function NavBar() {
   return (
-    <aside className="h-full border-r border-border w-80 py-8 flex flex-col gap-20 px-6 sticky top-0 left-0">
+    <aside className="h-full border-r border-border w-80 py-8 flex flex-col gap-20 px-6">
       <div className="pl-4 flex items-center justify-between">
         <Link href="/">
           <Image src={logo} alt="Aureus" className="w-40 dark:invert" />

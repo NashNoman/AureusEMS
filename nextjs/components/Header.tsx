@@ -15,8 +15,8 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="h-20 px-20 backdrop-blur-lg flex justify-between items-start">
-      <h3>{PAGES[pathname]}</h3>
+    <header className="px-20 backdrop-blur-lg flex justify-between items-center mb-12">
+      <h3>{PAGES[pathname as keyof typeof PAGES]}</h3>
 
       <div className="flex gap-3 items-center">
         <div className="p-1.5 text-sm border border-border rounded-xl flex items-center gap-2 mr-4">
