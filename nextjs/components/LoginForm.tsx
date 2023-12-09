@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import { Loader2Icon, LoaderIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -13,9 +14,14 @@ export default function LoginForm() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
+
+  const handleSetState = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
+    return e.target.value;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,7 +44,7 @@ export default function LoginForm() {
         setError(res.error);
         setLoading(false);
         setPassword("");
-        usernameRef.current?.select();
+        passwordRef.current?.focus();
         return;
       }
 
@@ -50,26 +56,32 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-8">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-4">
       <Label htmlFor="username">Username</Label>
       <Input
+        className={`transition-color ${
+          error ? "border-destructive focus-visible:ring-destructive" : ""
+        }`}
         id="username"
         name="username"
         type="text"
         autoComplete="off"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        ref={usernameRef}
+        onChange={(e) => setUsername(handleSetState(e))}
         autoFocus
       />
       <Label htmlFor="password">Password</Label>
       <Input
+        className={`transition-color ${
+          error ? "border-destructive focus-visible:ring-destructive" : ""
+        }`}
         id="password"
         name="password"
         type="password"
         autoComplete="off"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        ref={passwordRef}
+        onChange={(e) => setPassword(handleSetState(e))}
       />
       {loading ? (
         <Button disabled>
@@ -78,7 +90,14 @@ export default function LoginForm() {
       ) : (
         <Button type="submit">Continue</Button>
       )}
-      {error && <small className="text-red-500 text-center">{error}</small>}
+      <small
+        className={cn(
+          "text-transparent text-center transition-colors",
+          error && "text-destructive"
+        )}
+      >
+        {error || "error"}
+      </small>
     </form>
   );
 }

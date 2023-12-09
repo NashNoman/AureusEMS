@@ -1,10 +1,18 @@
 import LoginForm from "@/components/LoginForm";
 import Image from "next/image";
 import Logo from "@/public/logo-full.png";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await getServerSession();
+
+  if (session) {
+    redirect("/");
+  }
+
   return (
-    <div className="flex flex-col gap-3 w-96 px-6 pt-8 pb-6 rounded-lg shadow-2xl">
+    <div className="flex flex-col gap-3 w-[26rem] px-8 pt-12 pb-3 rounded-2xl shadow-2xl">
       <Image
         src={Logo}
         width={180}
@@ -14,7 +22,7 @@ export default function LoginPage() {
       />
       <div>
         <h3>Login</h3>
-        <p className="text-muted-foreground">to continue to Aureus</p>
+        {/* <p className="text-muted-foreground">to continue to Aureus</p> */}
       </div>
       <LoginForm />
     </div>
