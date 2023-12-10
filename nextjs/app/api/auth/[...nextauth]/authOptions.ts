@@ -3,6 +3,8 @@ import User from "@/models/User";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import Dept from "@/models/Dept";
+import School from "@/models/School";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -21,11 +23,31 @@ export const authOptions: NextAuthOptions = {
 
         if (!user) throw new Error("Incorrect username/password");
 
+        if (user.type === "student")
+          throw new Error("Incorrect username/password");
+
         const isMatch = await bcrypt.compare(password || "", user.password);
 
         if (!isMatch) throw new Error("Incorrect username/password");
 
-        return user;
+        const userObj: User = {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: { type: "instructor" },
+        };
+
+        if (user.type === "dean") {
+          const school = await School.findOne({ dean: user._id });
+          if (!school) throw new Error("Incorrect username/password");
+          userObj.role = { type: "dean", school: school._id };
+        } else if (user.type === "dept_head") {
+          const dept = await Dept.findOne({ head: user._id });
+          if (!dept) throw new Error("Incorrect username/password");
+          userObj.role = { type: "dept_head", dept: dept._id };
+        }
+
+        return userObj;
       },
     }),
   ],
@@ -37,5 +59,29 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+
+      // console.log(user);
+
+      return { ...token, ...user };
+    },
+    async session({ session, token }) {
+      const { id, firstName, lastName, role } = token as User;
+      session.user = {
+        id,
+        firstName,
+        lastName,
+        role,
+      };
+
+      console.log(token);
+
+      return session;
+    },
   },
 };
