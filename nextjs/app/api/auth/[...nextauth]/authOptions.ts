@@ -12,42 +12,47 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {},
       async authorize(credentials) {
-        await dbConnect();
-
         const { username, password } = credentials as {
           username: string;
           password: string;
         };
 
-        const user = await User.findOne({ username: username });
+        try {
+          await dbConnect();
 
-        if (!user) throw new Error("Incorrect username/password");
+          const user = await User.findOne({ username: username });
 
-        if (user.type === "student")
-          throw new Error("Incorrect username/password");
+          if (!user) throw new Error("Incorrect username/password");
 
-        const isMatch = await bcrypt.compare(password || "", user.password);
+          if (user.type === "student")
+            throw new Error("Incorrect username/password");
 
-        if (!isMatch) throw new Error("Incorrect username/password");
+          const isMatch = await bcrypt.compare(password || "", user.password);
 
-        const userObj: User = {
-          id: user._id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          role: { type: "instructor" },
-        };
+          if (!isMatch) throw new Error("Incorrect username/password");
 
-        if (user.type === "dean") {
-          const school = await School.findOne({ dean: user._id });
-          if (!school) throw new Error("Incorrect username/password");
-          userObj.role = { type: "dean", school: school._id };
-        } else if (user.type === "dept_head") {
-          const dept = await Dept.findOne({ head: user._id });
-          if (!dept) throw new Error("Incorrect username/password");
-          userObj.role = { type: "dept_head", dept: dept._id };
+          const userObj: User = {
+            id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: { type: "instructor" },
+          };
+
+          if (user.type === "dean") {
+            const school = await School.findOne({ dean: user._id });
+            if (!school) throw new Error("Incorrect username/password");
+            userObj.role = { type: "dean", school: school._id };
+          } else if (user.type === "dept_head") {
+            const dept = await Dept.findOne({ head: user._id });
+            if (!dept) throw new Error("Incorrect username/password");
+            userObj.role = { type: "dept_head", dept: dept._id };
+          }
+
+          return userObj;
+        } catch (error) {
+          console.log(error);
+          return null;
         }
-
-        return userObj;
       },
     }),
   ],

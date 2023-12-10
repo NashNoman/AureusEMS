@@ -72,7 +72,7 @@ export default function LoginForm() {
       />
       <Label htmlFor="password">Password</Label>
       <Input
-        className={`transition-color ${
+        className={`transition-color mb-2 ${
           error ? "border-destructive focus-visible:ring-destructive" : ""
         }`}
         id="password"

@@ -12,13 +12,13 @@ export default async function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col gap-3 w-[26rem] px-8 pt-12 pb-3 rounded-2xl shadow-2xl">
+    <div className="flex flex-col gap-3 w-[26rem] px-8 pt-12 pb-3 rounded-2xl shadow-2xl border-border border dark:shadow">
       <Image
         src={Logo}
         width={180}
         height={180}
         alt="aureus logo"
-        className="mb-4"
+        className="mb-4 dark:invert"
       />
       <div>
         <h3>Login</h3>
