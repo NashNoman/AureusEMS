@@ -3,7 +3,7 @@ import "@/app/globals.css";
 import Sidebar from "@/components/Sidebar";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
-import { AuthProvider } from "@/lib/providers";
+import { AuthProvider } from "@/components/providers";
 
 export const metadata = {
   title: "Aureus",

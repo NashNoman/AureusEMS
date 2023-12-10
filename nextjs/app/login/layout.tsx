@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
-import { AuthProvider } from "@/lib/providers";
+import { AuthProvider } from "@/components/providers";
 
 export const metadata = {
   title: "Login - Aureus",
