@@ -1,3 +1,4 @@
+import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -30,7 +31,7 @@ export default function AccountIcon() {
           {firstName[0] + lastName[0]}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="mx-2 bg-accent/50 p-0">
+      <PopoverContent className="m-2 bg-accent/50 p-0">
         <div className="bg-background p-3 rounded-md">
           <p className="text-lg font-bold">{firstName + " " + lastName}</p>
           <small className="text-muted-foreground">
@@ -40,7 +41,8 @@ export default function AccountIcon() {
         <div className="flex flex-col p-3">
           <div className="flex justify-between items-center px-3">
             <p className="font-medium text-accent-foreground">Theme</p>
-            <Select>
+            <ThemeToggle />
+            {/* <Select>
               <SelectTrigger className="w-auto">
                 <SelectValue placeholder="System" />
               </SelectTrigger>
@@ -49,7 +51,7 @@ export default function AccountIcon() {
                 <SelectItem value="Light">Light</SelectItem>
                 <SelectItem value="Dark">Dark</SelectItem>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
           <Separator className="my-2" />
           <Button

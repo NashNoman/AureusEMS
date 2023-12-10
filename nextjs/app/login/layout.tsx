@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
-import { AuthProvider } from "@/components/providers";
+import { AuthProvider, ThemesProvider } from "@/components/providers";
 
 export const metadata = {
   title: "Login - Aureus",
@@ -19,7 +19,15 @@ export default function RootLayout({
       <body
         className={`${inter.className} h-screen w-screen grid justify-center items-center`}
       >
-        <AuthProvider>{children}</AuthProvider>
+        <ThemesProvider
+          attribute="class"
+          defaultTheme="system"
+          themes={["light", "dark", "system"]}
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>{children}</AuthProvider>
+        </ThemesProvider>
       </body>
     </html>
   );

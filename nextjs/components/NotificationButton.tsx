@@ -14,7 +14,7 @@ export default function NotificationButton() {
       <DropdownMenuTrigger className="outline-none">
         <BellIcon className="h-5 text-muted-foreground" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="m-4">
         <DropdownMenuLabel className="w-52">Notifications</DropdownMenuLabel>
         <Separator />
         <DropdownMenuGroup>
