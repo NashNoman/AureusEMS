@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import "@/app/globals.css";
-import NavBar from "@/components/NavBar";
+import Sidebar from "@/components/Sidebar";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import { AuthProvider } from "@/lib/providers";
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Props) {
             inter.className
           }
         >
-          <NavBar />
+          <Sidebar />
           <div className="h-full w-full pt-8 flex flex-col">
             <Header />
             <main className="flex flex-col flex-grow overflow-hidden">

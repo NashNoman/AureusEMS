@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import logo from "@/public/logo-full.png";
 import Link from "next/link";
-import NavLink from "@/components/NavLink";
+import SidebarLink from "@/components/SidebarLink";
 import {
   ArchiveIcon,
   BookMarkedIcon,
@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import NotificationButton from "@/components/NotificationButton";
 
-export default function NavBar() {
+export default function Sidebar() {
   return (
     <aside className="h-full border-r border-border w-80 py-8 flex flex-col gap-20 px-6">
       <div className="pl-4 flex items-center justify-between">
@@ -27,28 +27,28 @@ export default function NavBar() {
       <nav className="flex-grow">
         <ul className="flex flex-col font-semibold text-muted-foreground gap-4">
           <li>
-            <NavLink path="/">
+            <SidebarLink path="/">
               <HomeIcon className="w-5 stroke-1" />
               Home
-            </NavLink>
+            </SidebarLink>
           </li>
           <li>
-            <NavLink path="/bank">
+            <SidebarLink path="/bank">
               <ArchiveIcon className="w-5 stroke-1" />
               Bank
-            </NavLink>
+            </SidebarLink>
           </li>
           <li>
-            <NavLink path="/exams">
+            <SidebarLink path="/exams">
               <FileQuestionIcon className="w-5 stroke-1" />
               Exams
-            </NavLink>
+            </SidebarLink>
           </li>
           <li>
-            <NavLink path="/courses">
+            <SidebarLink path="/courses">
               <BookMarkedIcon className="w-5 stroke-1" />
               Courses
-            </NavLink>
+            </SidebarLink>
           </li>
         </ul>
       </nav>

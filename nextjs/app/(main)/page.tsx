@@ -8,8 +8,6 @@ export default function Home() {
 
   if (!session) return null;
 
-  console.log(session.user);
-
   return (
     <main>
       <h1>Hello, {session.user.firstName}!</h1>

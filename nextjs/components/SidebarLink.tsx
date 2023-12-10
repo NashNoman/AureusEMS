@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 
 type Props = { children: ReactNode; path: string };
 
-export default function NavLink({ children, path }: Props) {
+export default function SidebarLink({ children, path }: Props) {
   const pathname = usePathname();
 
   return (

@@ -66,8 +66,6 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
       }
 
-      // console.log(user);
-
       return { ...token, ...user };
     },
     async session({ session, token }) {
@@ -78,8 +76,6 @@ export const authOptions: NextAuthOptions = {
         lastName,
         role,
       };
-
-      console.log(token);
 
       return session;
     },
