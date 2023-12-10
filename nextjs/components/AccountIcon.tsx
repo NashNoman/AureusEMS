@@ -5,16 +5,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { LogOutIcon, Sun } from "lucide-react";
+import { LogOutIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 
 export default function AccountIcon() {
@@ -31,27 +24,19 @@ export default function AccountIcon() {
           {firstName[0] + lastName[0]}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="m-2 bg-accent/50 p-0">
+      <PopoverContent className="mx-2 bg-accent/50 p-0">
         <div className="bg-background p-3 rounded-md">
           <p className="text-lg font-bold">{firstName + " " + lastName}</p>
           <small className="text-muted-foreground">
-            {role.type === "dept_head" && role.dept}
+            {role.type === "dean" && `Dean: ${role.schoolName}`}
+            {role.type === "dept_head" && `Head: ${role.deptName}`}
+            {role.type === "instructor" && "Instructor"}
           </small>
         </div>
         <div className="flex flex-col p-3">
           <div className="flex justify-between items-center px-3">
             <p className="font-medium text-accent-foreground">Theme</p>
             <ThemeToggle />
-            {/* <Select>
-              <SelectTrigger className="w-auto">
-                <SelectValue placeholder="System" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="System">System</SelectItem>
-                <SelectItem value="Light">Light</SelectItem>
-                <SelectItem value="Dark">Dark</SelectItem>
-              </SelectContent>
-            </Select> */}
           </div>
           <Separator className="my-2" />
           <Button

@@ -41,11 +41,19 @@ export const authOptions: NextAuthOptions = {
           if (user.type === "dean") {
             const school = await School.findOne({ dean: user._id });
             if (!school) throw new Error("Incorrect username/password");
-            userObj.role = { type: "dean", school: school._id };
+            userObj.role = {
+              type: "dean",
+              school: school._id,
+              schoolName: school.title,
+            };
           } else if (user.type === "dept_head") {
             const dept = await Dept.findOne({ head: user._id });
             if (!dept) throw new Error("Incorrect username/password");
-            userObj.role = { type: "dept_head", dept: dept._id };
+            userObj.role = {
+              type: "dept_head",
+              dept: dept._id,
+              deptName: dept.title,
+            };
           }
 
           return userObj;
