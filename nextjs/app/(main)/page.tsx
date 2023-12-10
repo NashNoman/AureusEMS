@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -11,9 +10,6 @@ export default function Home() {
   return (
     <main>
       <h1>Hello, {session.user.firstName}!</h1>
-      <Button variant="destructive" onClick={() => signOut()}>
-        Logout
-      </Button>
     </main>
   );
 }

@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -14,7 +12,7 @@ export default function NotificationButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
-        <BellIcon className="w-[1.1rem] text-muted-foreground fill-muted-foreground" />
+        <BellIcon className="h-5 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel className="w-52">Notifications</DropdownMenuLabel>
@@ -23,7 +21,6 @@ export default function NotificationButton() {
           <span className="text-foreground/50 py-2 block text-center text-sm">
             empty
           </span>
-          {/* <DropdownMenuItem>empty</DropdownMenuItem> */}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
