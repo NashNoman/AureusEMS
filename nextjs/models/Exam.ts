@@ -27,6 +27,12 @@ const examSchema = new mongoose.Schema({
   updated: { type: Date, default: Date.now },
   created: { type: Date, default: Date.now },
   sections: [examSectionSchema],
+  due: { type: Date, default: Date.now },
+  type: {
+    type: String,
+    enum: ["test", "mid"],
+    default: "test",
+  },
 });
 
 export default mongoose.models.Exam || mongoose.model("Exam", examSchema);

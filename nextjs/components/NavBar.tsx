@@ -21,7 +21,6 @@ export default function NavBar() {
         <Link href="/">
           <Image src={logo} alt="Aureus" className="w-40 dark:invert" />
         </Link>
-        {/* <NotificationButton /> */}
       </div>
 
       <nav className="flex-grow">

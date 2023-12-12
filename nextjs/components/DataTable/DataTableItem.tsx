@@ -1,5 +1,7 @@
 import { ColumnWidth } from "@/enums";
 
+const className = 'w-24';
+
 type Props = {
   children: string;
   columnWidth?: "sm" | "lg" | "default";

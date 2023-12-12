@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-type Props = { children: ReactNode; href: string };
+type Props = { children: ReactNode; href: string; className?: string; };
 
-export default function DataTableRow({ children, href }: Props) {
+export default function DataTableRow({ children, href , className}: Props) {
   return (
     <Link
       href={href}
