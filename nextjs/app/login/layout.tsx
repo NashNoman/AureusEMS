@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} h-screen w-screen grid justify-center items-center bg-background`}
+        className={`${inter.className} h-screen w-screen grid justify-center items-center`}
       >
         <ThemesProvider
           attribute="class"

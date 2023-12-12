@@ -12,7 +12,7 @@ export default async function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col gap-3 w-[26rem] px-8 pt-12 pb-3 rounded-2xl shadow-2xl border-border border dark:shadow">
+    <div className="flex flex-col gap-3 w-[26rem] px-8 pt-12 pb-3 rounded-2xl shadow-2xl border-border border bg-background/50 dark:shadow">
       <Image
         src={Logo}
         width={180}

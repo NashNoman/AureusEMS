@@ -19,8 +19,7 @@ export default function RootLayout({ children }: Props) {
       <AuthProvider>
         <body
           className={
-            "h-screen bg-background text-primary flex overflow-hidden " +
-            inter.className
+            "h-screen text-primary flex overflow-hidden " + inter.className
           }
         >
           <ThemesProvider

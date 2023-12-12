@@ -1,8 +1,10 @@
+import TableController from "@/app/(main)/TableController";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import DataTableBody from "@/components/DataTable/DataTableBody";
 import DataTableHeader from "@/components/DataTable/DataTableHeader";
 import DataTableItem from "@/components/DataTable/DataTableItem";
 import DataTableRow from "@/components/DataTable/DataTableRow";
+import { Button } from "@/components/ui/button";
 import { ColumnWidth } from "@/enums";
 import Course from "@/models/Course";
 import Exam from "@/models/Exam";
@@ -29,6 +31,7 @@ export default async function Home() {
 
   return (
     <main>
+      <TableController />
       <DataTableHeader columns={columns} />
       <DataTableBody>
         {exams.map((exam: (typeof exams)[0]) => {
