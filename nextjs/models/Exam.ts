@@ -12,7 +12,7 @@ const examSectionSchema = new mongoose.Schema(
 );
 
 const examSchema = new mongoose.Schema({
-  title: String,
+  type: String,
   course: { type: mongoose.SchemaTypes.ObjectId, ref: "Course" },
   status: {
     type: String,
@@ -26,6 +26,7 @@ const examSchema = new mongoose.Schema({
   },
   updated: { type: Date, default: Date.now },
   created: { type: Date, default: Date.now },
+  due: Date,
   sections: [examSectionSchema],
 });
 

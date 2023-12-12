@@ -6,6 +6,8 @@ type Props = {
   center?: boolean;
 };
 
+const className = "w-28";
+
 export default function DataTableItem({
   children,
   columnWidth = "default",

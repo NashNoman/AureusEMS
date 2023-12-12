@@ -1,3 +1,4 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import DataTableBody from "@/components/DataTable/DataTableBody";
 import DataTableHeader from "@/components/DataTable/DataTableHeader";
 import DataTableItem from "@/components/DataTable/DataTableItem";
@@ -7,10 +8,15 @@ import { dbConnect } from "@/lib/db";
 import Course from "@/models/Course";
 import Dept from "@/models/Dept";
 import User from "@/models/User";
+import { getServerSession } from "next-auth";
 
 export default async function CoursesHome() {
   await dbConnect();
-  const dept = await Dept.findById("655a421d8dbcc5c428aa18f4").populate({
+  const session = await getServerSession(authOptions);
+
+  if (!session || session.user.role.type !== "dept_head") return null;
+
+  const dept = await Dept.findById(session?.user.role.dept).populate({
     path: "courses",
     model: Course,
     populate: { path: "instructor", model: User },
@@ -35,7 +41,7 @@ export default async function CoursesHome() {
           const { id, code, title, instructor: inst, exams } = course;
 
           return (
-            <DataTableRow key={id} href={`/course/${code}`}>
+            <DataTableRow key={id}>
               <DataTableItem columnWidth="sm">{code}</DataTableItem>
               <DataTableItem>{title}</DataTableItem>
               <DataTableItem columnWidth="lg">

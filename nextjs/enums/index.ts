@@ -1,5 +1,5 @@
 export enum ColumnWidth {
-  sm = "w-24",
+  sm = "w-28",
   lg = "w-64",
   default = "flex-grow",
 }
