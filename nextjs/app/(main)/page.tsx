@@ -6,6 +6,7 @@ import DataTableItem from "@/components/DataTable/DataTableItem";
 import DataTableRow from "@/components/DataTable/DataTableRow";
 import { Button } from "@/components/ui/button";
 import { ColumnWidth } from "@/enums";
+import { dbConnect } from "@/lib/db";
 import Course from "@/models/Course";
 import Exam from "@/models/Exam";
 import { getServerSession } from "next-auth";
@@ -13,16 +14,35 @@ import { getServerSession } from "next-auth";
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
-  const courses = await Course.find({ instructor: session?.user.id });
+  await dbConnect();
 
-  const exams = await Exam.find({ course: { $in: courses } }).populate(
-    "course"
+  const courses = await Course.find({ instructor: session?.user.id }).populate(
+    "exams.doc",
+    Exam
   );
+
+  const exams = courses
+    .map((course: any) => {
+      return course.exams.map((exam: any) => {
+        const { _id, type, percentage, doc } = exam;
+        return {
+          id: _id,
+          type,
+          percentage,
+          doc,
+          courseTitle: course.title,
+          courseCode: course.code,
+          courseId: course.id,
+        };
+      });
+    })
+    .reduce((acc, val) => acc.concat(val), []);
 
   const columns = [
     { title: "code", columnWidth: ColumnWidth.sm },
     { title: "course" },
     { title: "exam", columnWidth: ColumnWidth.sm, centered: true },
+    { title: "percentage", columnWidth: ColumnWidth.sm, centered: true },
     { title: "status", columnWidth: ColumnWidth.sm, centered: true },
     { title: "due", columnWidth: ColumnWidth.sm, centered: true },
     { title: "updated", columnWidth: ColumnWidth.sm, centered: true },
@@ -34,7 +54,54 @@ export default async function Home() {
       <TableController />
       <DataTableHeader columns={columns} />
       <DataTableBody>
-        {exams.map((exam: (typeof exams)[0]) => {
+        {exams.map((exam: any) => {
+          const { id, type, percentage, doc, courseTitle, courseCode } = exam;
+
+          return (
+            <DataTableRow key={id}>
+              <DataTableItem columnWidth="sm">{courseCode}</DataTableItem>
+              <DataTableItem>{courseTitle}</DataTableItem>
+              <DataTableItem columnWidth="sm" center>
+                {type}
+              </DataTableItem>
+              <DataTableItem columnWidth="sm" center>
+                {percentage + "%"}
+              </DataTableItem>
+              {doc ? (
+                <>
+                  <DataTableItem columnWidth="sm" center>
+                    {doc.status}
+                  </DataTableItem>
+                  <DataTableItem columnWidth="sm" center>
+                    {doc.due}
+                  </DataTableItem>
+                  <DataTableItem columnWidth="sm" center>
+                    {doc.updatedAt}
+                  </DataTableItem>
+                  <DataTableItem columnWidth="sm" center>
+                    {doc.createdAt}
+                  </DataTableItem>
+                </>
+              ) : (
+                <>
+                  <DataTableItem columnWidth="sm" center>
+                    -
+                  </DataTableItem>
+                  <DataTableItem columnWidth="sm" center>
+                    -
+                  </DataTableItem>
+                  <DataTableItem columnWidth="sm" center>
+                    -
+                  </DataTableItem>
+                  <DataTableItem columnWidth="sm" center>
+                    -
+                  </DataTableItem>
+                </>
+              )}
+            </DataTableRow>
+          );
+        })}
+        {/* {exams.map((exam: (typeof exams)[0]) => {
           const { id, status, title, course, due, updatedAt, createdAt } = exam;
 
           return (
@@ -82,7 +149,7 @@ export default async function Home() {
               );
             });
           else return null;
-        })}
+        })} */}
       </DataTableBody>
     </main>
   );
