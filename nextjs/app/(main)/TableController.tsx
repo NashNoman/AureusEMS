@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
 
 export default function TableController({
   onChange,
@@ -24,10 +23,6 @@ export default function TableController({
         onClick={() => onChange("recent")}
       >
         Recent
-      </Button>
-      <Button className="bg-blue-600 text-white float-right hover:bg-blue-700">
-        New exam
-        <kbd className="ml-4 text-gray-300 text-xs">Alt N</kbd>
       </Button>
     </div>
   );
