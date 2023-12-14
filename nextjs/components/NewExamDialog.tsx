@@ -37,53 +37,7 @@ export default function NewExamDialog({ children, exam }: Props) {
           <DialogTitle>New Exam</DialogTitle>
           <DialogDescription>Choose exam type.</DialogDescription>
         </DialogHeader>
-        <div className="p-3 flex flex-col gap-3">
-          <Label>Exam date</Label>
-          <Popover>
-            <PopoverTrigger asChild className="mb-4">
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-[280px] justify-start text-left font-normal",
-                  !date && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : <span>Pick a date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover>
-          <div className="flex gap-3 justify-center">
-            <div
-              className={cn(
-                "flex flex-col items-center outline px-4 py-6 outline-border gap-2 cursor-pointer rounded-sm flex-grow text-muted transition-colors",
-                type === "paper" && "outline-primary text-primary"
-              )}
-              onClick={() => setType("paper")}
-            >
-              <File className="h-10 w-10" />
-              <p>Paper</p>
-            </div>
-            <div
-              className={cn(
-                "flex flex-col items-center outline px-4 py-6 outline-border gap-2 cursor-pointer rounded-sm flex-grow text-muted transition-colors",
-                type === "electronic" && "outline-primary text-primary"
-              )}
-              onClick={() => setType("electronic")}
-            >
-              <LucideComputer className="h-10 w-10" />
-              <p>Electronic</p>
-            </div>
-          </div>
-        </div>
+        <div></div>
         <DialogFooter>
           <Button>Create exam</Button>
         </DialogFooter>
