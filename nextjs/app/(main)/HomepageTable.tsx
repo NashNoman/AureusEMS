@@ -5,6 +5,7 @@ import DataTableBody from "@/components/DataTable/DataTableBody";
 import DataTableHeader from "@/components/DataTable/DataTableHeader";
 import DataTableItem from "@/components/DataTable/DataTableItem";
 import DataTableRow from "@/components/DataTable/DataTableRow";
+import NewExamDialog from "@/components/NewExamDialog";
 import { useState } from "react";
 
 export default function HomepageTable({
@@ -36,47 +37,49 @@ export default function HomepageTable({
           const { id, type, percentage, doc, courseTitle, courseCode } = exam;
 
           return (
-            <DataTableRow key={id}>
-              <DataTableItem columnWidth="sm">{courseCode}</DataTableItem>
-              <DataTableItem>{courseTitle}</DataTableItem>
-              <DataTableItem columnWidth="sm" center>
-                {type}
-              </DataTableItem>
-              <DataTableItem columnWidth="sm" center>
-                {percentage + "%"}
-              </DataTableItem>
-              {doc ? (
-                <>
-                  <DataTableItem columnWidth="sm" center>
-                    {doc.status}
-                  </DataTableItem>
-                  <DataTableItem columnWidth="sm" center>
-                    {doc.due}
-                  </DataTableItem>
-                  <DataTableItem columnWidth="sm" center>
-                    {doc.updatedAt}
-                  </DataTableItem>
-                  <DataTableItem columnWidth="sm" center>
-                    {doc.createdAt}
-                  </DataTableItem>
-                </>
-              ) : (
-                <>
-                  <DataTableItem columnWidth="sm" center>
-                    -
-                  </DataTableItem>
-                  <DataTableItem columnWidth="sm" center>
-                    -
-                  </DataTableItem>
-                  <DataTableItem columnWidth="sm" center>
-                    -
-                  </DataTableItem>
-                  <DataTableItem columnWidth="sm" center>
-                    -
-                  </DataTableItem>
-                </>
-              )}
-            </DataTableRow>
+            <NewExamDialog key={id} exam={exam}>
+              <DataTableRow>
+                <DataTableItem columnWidth="sm">{courseCode}</DataTableItem>
+                <DataTableItem>{courseTitle}</DataTableItem>
+                <DataTableItem columnWidth="sm" center>
+                  {type}
+                </DataTableItem>
+                <DataTableItem columnWidth="sm" center>
+                  {percentage + "%"}
+                </DataTableItem>
+                {doc ? (
+                  <>
+                    <DataTableItem columnWidth="sm" center>
+                      {doc.status}
+                    </DataTableItem>
+                    <DataTableItem columnWidth="sm" center>
+                      {doc.due}
+                    </DataTableItem>
+                    <DataTableItem columnWidth="sm" center>
+                      {doc.updatedAt}
+                    </DataTableItem>
+                    <DataTableItem columnWidth="sm" center>
+                      {doc.createdAt}
+                    </DataTableItem>
+                  </>
+                ) : (
+                  <>
+                    <DataTableItem columnWidth="sm" center>
+                      -
+                    </DataTableItem>
+                    <DataTableItem columnWidth="sm" center>
+                      -
+                    </DataTableItem>
+                    <DataTableItem columnWidth="sm" center>
+                      -
+                    </DataTableItem>
+                    <DataTableItem columnWidth="sm" center>
+                      -
+                    </DataTableItem>
+                  </>
+                )}
+              </DataTableRow>
+            </NewExamDialog>
           );
         })}
       </DataTableBody>
