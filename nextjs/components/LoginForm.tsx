@@ -59,7 +59,7 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-4">
       <Label htmlFor="username">Username</Label>
       <Input
-        className={`transition-color ${
+        className={`transition-color mb-2 ${
           error ? "border-destructive focus-visible:ring-destructive" : ""
         }`}
         id="username"

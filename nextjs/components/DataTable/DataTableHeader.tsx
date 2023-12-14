@@ -13,6 +13,7 @@ export default function DataTableHeader({ columns }: Props) {
     <div className="flex text-xs text-muted-foreground justify-between pr-36 px-20 items-center h-10 border-b border-accent">
       {columns.map((column) => (
         <div
+          key={column.title}
           className={`${column.columnWidth || "flex-grow"} ${
             column.centered && "text-center"
           }`}

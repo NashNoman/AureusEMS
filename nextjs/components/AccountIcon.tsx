@@ -24,7 +24,7 @@ export default function AccountIcon() {
           {firstName[0] + lastName[0]}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="mx-2 bg-accent/50 p-0">
+      <PopoverContent className="mx-2 bg-accent/50 p-0 backdrop-blur-sm">
         <div className="bg-background p-3 rounded-md">
           <p className="text-lg font-bold">{firstName + " " + lastName}</p>
           <small className="text-muted-foreground">

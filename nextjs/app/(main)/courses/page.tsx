@@ -45,10 +45,10 @@ export default async function CoursesHome() {
       <DataTableHeader columns={columns} />
       <DataTableBody>
         {dept.courses.map((course: (typeof dept.courses)[0]) => {
-          const { id, code, title, instructor: inst, exams } = course;
+          const { _id, code, title, instructor: inst, exams } = course;
 
           return (
-            <DataTableRow key={id} href={`/course/${code}`}>
+            <DataTableRow key={_id}>
               <DataTableItem columnWidth="sm">{code}</DataTableItem>
               <DataTableItem>{title}</DataTableItem>
               <DataTableItem columnWidth="lg">
