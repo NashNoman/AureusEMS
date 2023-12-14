@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default function TableController({
   onChange,
@@ -13,13 +14,20 @@ export default function TableController({
     <div className="px-20 mb-6">
       <Button
         variant={(display === "all" && "secondary") || "ghost"}
-        className="mr-4"
+        className={cn(
+          "mr-4 text-primary/50",
+          display === "all" && "text-primary"
+        )}
         onClick={() => onChange("all")}
       >
         All
       </Button>
       <Button
         variant={(display === "recent" && "secondary") || "ghost"}
+        className={cn(
+          "mr-4 text-primary/50",
+          display === "recent" && "text-primary"
+        )}
         onClick={() => onChange("recent")}
       >
         Recent
