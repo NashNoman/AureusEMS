@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask_smorest import Api
 from resources.clos import blp as clos_blp
+from resources.classifiers import blp as classifiers_blp
 
 
 app = Flask(__name__)
@@ -21,6 +22,7 @@ app.config["MONGO_URI"] = config["PROD"]["DB_URI"]
 api = Api(app)
 
 api.register_blueprint(clos_blp)
+api.register_blueprint(classifiers_blp)
 
 if __name__ == "__main__":
     app.run(port=4000, debug=True)
