@@ -4,6 +4,10 @@ node_modules
 
 */**/__pycache__
 /flask/requirements-old.txt
+/flask/mcq-textcat-model
+/flask/tof-textcat-model
+/flask/direct-textcat-model
+/flask/config.ini
 
 /mongodb
 

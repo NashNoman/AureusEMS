@@ -1,21 +1,15 @@
-from flask import Flask
+import configparser
 import os
-from db import db
+from flask import Flask
+
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///uni_data.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+config = configparser.ConfigParser()
+config.read(os.path.abspath(os.path.join("config.ini")))
 
-db.init_app(app)
+app.config["MONGO_URI"] = config["PROD"]["DB_URI"]
 
-with app.app_context() as c:
-  db.create_all()
 
-@app.get("/")
-def home():
-    return "hello"
-
-if __name__ == '__main__':
-  app.run(host=os.environ.get("BACKEND_HOST", "172.0.0.1"), port=4000, debug=True)
-  print("Running on port 4000")  
+if __name__ == "__main__":
+    app.run(host="192.168.1.1", port=4000, debug=True)
