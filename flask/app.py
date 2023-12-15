@@ -10,6 +10,12 @@ app = Flask(__name__)
 config = configparser.ConfigParser()
 config.read(os.path.abspath(os.path.join("config.ini")))
 
+app.config["API_TITLE"] = "Aureus API"
+app.config["API_VERSION"] = "v1"
+app.config["OPENAPI_VERSION"] = "3.0.2"
+app.config["OPENAPI_URL_PREFIX"] = "/docs"
+app.config["OPENAPI_SWAGGER_UI_PATH"] = "/swagger"
+app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
 app.config["MONGO_URI"] = config["PROD"]["DB_URI"]
 
 api = Api(app)
@@ -17,4 +23,4 @@ api = Api(app)
 api.register_blueprint(clos_blp)
 
 if __name__ == "__main__":
-    app.run(host="192.168.1.1", port=4000, debug=True)
+    app.run(port=4000, debug=True)
