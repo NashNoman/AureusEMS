@@ -1,21 +1,28 @@
-from flask import Flask
+import configparser
 import os
-from db import db
+from flask import Flask
+from flask_smorest import Api
+from resources.clos import blp as clos_blp
+from resources.classifiers import blp as classifiers_blp
+
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///uni_data.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+config = configparser.ConfigParser()
+config.read(os.path.abspath(os.path.join("config.ini")))
 
-db.init_app(app)
+app.config["API_TITLE"] = "Aureus API"
+app.config["API_VERSION"] = "v1"
+app.config["OPENAPI_VERSION"] = "3.0.2"
+app.config["OPENAPI_URL_PREFIX"] = "/docs"
+app.config["OPENAPI_SWAGGER_UI_PATH"] = "/swagger"
+app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
+app.config["MONGO_URI"] = config["PROD"]["DB_URI"]
 
-with app.app_context() as c:
-  db.create_all()
+api = Api(app)
 
-@app.get("/")
-def home():
-    return "hello"
+api.register_blueprint(clos_blp)
+api.register_blueprint(classifiers_blp)
 
-if __name__ == '__main__':
-  app.run(host=os.environ.get("BACKEND_HOST", "172.0.0.1"), port=4000, debug=True)
-  print("Running on port 4000")  
+if __name__ == "__main__":
+    app.run(port=4000, debug=True)
