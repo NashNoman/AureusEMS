@@ -6,6 +6,7 @@ class Classifiers:
 
     __mcq = None
     __direct = None
+    __spacy = None
 
     @staticmethod
     def get_mcq():
@@ -18,3 +19,9 @@ class Classifiers:
         if Classifiers.__direct is None:
             Classifiers.__direct = spacy.load("direct-textcat-model")
         return Classifiers.__direct
+
+    @staticmethod
+    def get_spacy():
+        if Classifiers.__spacy is None:
+            Classifiers.__spacy = spacy.load("en_core_web_sm")
+        return Classifiers.__spacy

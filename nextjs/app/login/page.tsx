@@ -3,6 +3,7 @@ import Image from "next/image";
 import Logo from "@/public/logo-full.png";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import LoginFormCard from "@/components/ui/login-form-card";
 
 export default async function LoginPage() {
   const session = await getServerSession();
@@ -12,7 +13,7 @@ export default async function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col gap-3 w-[26rem] px-8 pt-12 pb-3 rounded-2xl shadow-2xl border-border border bg-background/50 dark:shadow">
+    <LoginFormCard>
       <Image
         src={Logo}
         width={180}
@@ -25,6 +26,6 @@ export default async function LoginPage() {
         {/* <p className="text-muted-foreground">to continue to Aureus</p> */}
       </div>
       <LoginForm />
-    </div>
+    </LoginFormCard>
   );
 }

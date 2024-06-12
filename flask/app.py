@@ -17,7 +17,10 @@ app.config["OPENAPI_VERSION"] = "3.0.2"
 app.config["OPENAPI_URL_PREFIX"] = "/docs"
 app.config["OPENAPI_SWAGGER_UI_PATH"] = "/swagger"
 app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
-app.config["MONGO_URI"] = config["PROD"]["DB_URI"]
+print(config["PROD"]["DB_URI"])
+app.config[
+    "MONGO_URI"
+] = "mongodb+srv://aureusdb:fY0sb1wFPmliyFHK@aureusdb.siuj8f6.mongodb.net/aureusdb?retryWrites=true&w=majority"
 
 api = Api(app)
 

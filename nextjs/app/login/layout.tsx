@@ -17,11 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} h-screen w-screen grid justify-center items-center`}
+        className={`${inter.className} bg-background h-screen w-screen grid justify-center items-center`}
       >
         <ThemesProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           themes={["light", "dark", "system"]}
           enableSystem
           disableTransitionOnChange

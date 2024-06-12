@@ -2,6 +2,7 @@ import bson
 
 from flask_pymongo import PyMongo
 from flask import current_app, g
+import sys
 
 
 def get_db():

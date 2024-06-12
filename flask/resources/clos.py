@@ -28,66 +28,53 @@ class Clos(MethodView):
         self.validate_request_data(data)
         ner = NER.get_instance()
         clos = data["clos"]
-        res = {"clos": [], "levels": defaultdict(list), "highest": 0}
-        topics = {}
-
+        res = {"los": [], "topics": [], "highest": 0}
+        topics = defaultdict(set)
         for clo in clos:
             doc = ner(clo)
             ents = doc.ents
-
             if not ents:
-                res["clos"].append(
+                res["los"].append(
                     {"text": clo, "error": "no learning outcome verbs found"}
                 )
                 continue
-
             ftext = clo
             padding = 0
             last_skill = None
-            error = False
-
+            invalid = False
             for ent in ents:
                 if ent.label_ == "SKILL":
                     lemmed = wnl.lemmatize(ent.text.lower(), "v")
                     skill = skills.get(lemmed)
-
                     if not skill:
                         skill = "er"
-                        error = f"skill '{ent.text}' is not recognized as an indicator of a Bloom's taxonomy level"
-
+                        invalid = f"skill '{ent.text}' is not recognized as an indicator of a Bloom's taxonomy level"
                     ftext = (
                         ftext[: ent.start_char + padding]
                         + f"<{skill}>"
                         + ftext[ent.start_char + padding : ent.end_char + padding]
-                        + f"<{skill}>"
+                        + f"</{skill}>"
                         + ftext[ent.end_char + padding :]
                     )
-
                     if skill == "er":
-                        res["clos"].append(
+                        res["los"].append(
                             {
                                 "text": ftext,
                                 "error": f"skill '{ent.text}' is not recognized as an indicator of a Bloom's taxonomy level",
                             }
                         )
-                        error = True
+                        invalid = True
                         break
-
-                    padding += 8
+                    padding += 9
                     if skill in skill_levels.keys():
                         last_skill = skill_levels[skill]
                     continue
-
-                if ent.text in topics and topics[ent.text] >= last_skill:
-                    continue
-
                 if last_skill is None:
-                    res["clos"].append(
+                    res["los"].append(
                         {"text": ftext, "error": "no learning outcome verbs found"}
                     )
-                    error = True
+                    invalid = True
                     break
-
                 topic = ent.text.lower()
                 if topic.count(" ") > 0:
                     topic = topic.split(" ")
@@ -95,14 +82,12 @@ class Clos(MethodView):
                     topic = " ".join(topic)
                 else:
                     topic = wnl.lemmatize(topic, "n")
-                topics[topic] = last_skill
-
-            if not error:
-                res["clos"].append({"text": ftext})
-
-        for topic, level in topics.items():
-            res["levels"][level].append(topic)
-
-        res["highest"] = max(res["levels"].keys())
-
+                topics[topic].add(last_skill)
+            if not invalid:
+                res["los"].append({"text": ftext})
+        for topic, levels in topics.items():
+            res["topics"].append(
+                {"topic": topic, "levels": list(levels), "highest": max(levels)}
+            )
+        res["highest"] = max([level["highest"] for level in res["topics"]])
         return res

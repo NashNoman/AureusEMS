@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { motion, useAnimate } from "framer-motion";
 import { Loader2Icon, LoaderIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -15,8 +16,8 @@ export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const passwordRef = useRef<HTMLInputElement>(null);
-
   const router = useRouter();
+  const [scope, animate] = useAnimate();
 
   const handleSetState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
@@ -91,12 +92,10 @@ export default function LoginForm() {
         <Button type="submit">Continue</Button>
       )}
       <small
-        className={cn(
-          "text-transparent text-center transition-colors",
-          error && "text-destructive"
-        )}
+        ref={scope}
+        className="text-center text-destructive dark:text-red-400"
       >
-        {error || "error"}
+        {error}
       </small>
     </form>
   );

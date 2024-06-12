@@ -1,3 +1,5 @@
+"use client";
+
 import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,23 +8,19 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
-import { LogOutIcon } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { ChevronDown, LogOutIcon } from "lucide-react";
+import { signOut } from "next-auth/react";
 
-export default function AccountIcon() {
-  const { data: session } = useSession();
-
-  if (!session) return <Skeleton className="w-9 h-9 rounded-full" />;
-
-  const { firstName, lastName, role } = session?.user;
+export default function AccountIcon({ user }: { user: User }) {
+  const { firstName, lastName, role } = user;
 
   return (
     <Popover>
       <PopoverTrigger>
-        <div className="border grid justify-center items-center font-bold text-foreground/60 cursor-pointer border-border w-9 h-9 rounded-full hover:bg-accent transition-colors">
-          {firstName[0] + lastName[0]}
-        </div>
+        <p className="text-sm border flex justify-center items-center font-medium text-foreground/60 cursor-pointer border-border min-w-[2.25rem] min-h-[2.25rem] rounded-md hover:bg-accent transition-colors px-4 py-1">
+          {firstName[0]}. {lastName}
+          <ChevronDown className="w-4 h-4 ml-2" />
+        </p>
       </PopoverTrigger>
       <PopoverContent className="mx-2 bg-accent/50 p-0 backdrop-blur-sm">
         <div className="bg-background p-3 rounded-md">

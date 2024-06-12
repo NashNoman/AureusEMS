@@ -84,3 +84,12 @@ skills = {
 }
 
 skill_levels = {"re": 1, "un": 2, "ap": 3, "an": 4, "ev": 5, "cr": 6}
+
+skills_full = [
+    "remembering",
+    "understanding",
+    "applying",
+    "analyzing",
+    "evaluating",
+    "creating",
+]

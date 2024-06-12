@@ -16,7 +16,8 @@ export default function SidebarLink({ children, path }: Props) {
       className={cn(
         "hover:text-foreground/80 hover:bg-muted transition-colors flex items-center gap-3 outline outline-transparent py-1.5 px-4 rounded-md",
         {
-          "text-foreground !outline-secondary bg-muted/60": pathname === path,
+          "text-foreground !outline-secondary bg-muted/60 outline-1":
+            pathname.split("/")[1] === path.split("/")[1],
         }
       )}
     >

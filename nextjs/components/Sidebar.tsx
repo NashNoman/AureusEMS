@@ -11,12 +11,13 @@ import {
 } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
+import SidebarWrapper from "@/components/ui/sidebar-wrapper";
 
 export default async function Sidebar() {
   const session = await getServerSession(authOptions);
 
   return (
-    <aside className="h-full border-r border-border w-80 py-8 flex flex-col gap-20 px-6">
+    <SidebarWrapper>
       <div className="pl-4 flex items-center justify-between">
         <Link href="/">
           <Image src={logo} alt="Aureus" className="w-40 dark:invert" />
@@ -55,6 +56,6 @@ export default async function Sidebar() {
           )}
         </ul>
       </nav>
-    </aside>
+    </SidebarWrapper>
   );
 }

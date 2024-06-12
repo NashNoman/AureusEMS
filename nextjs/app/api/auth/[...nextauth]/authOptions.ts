@@ -33,7 +33,9 @@ export const authOptions: NextAuthOptions = {
 
           const userObj: User = {
             id: user._id,
+            username: user.username,
             firstName: user.firstName,
+            middleName: user.middleName,
             lastName: user.lastName,
             role: { type: "instructor" },
           };
@@ -64,9 +66,11 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+
+  
   session: {
     strategy: "jwt",
-    maxAge: 10 * 60,
+    maxAge: 60 * 60,
     updateAge: 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
@@ -82,10 +86,13 @@ export const authOptions: NextAuthOptions = {
       return { ...token, ...user };
     },
     async session({ session, token }) {
-      const { id, firstName, lastName, role } = token as User;
+      const { id, username, firstName, middleName, lastName, role } =
+        token as User;
       session.user = {
         id,
+        username,
         firstName,
+        middleName,
         lastName,
         role,
       };

@@ -49,15 +49,147 @@
   }
 }
 
-h1 {
-  @apply scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl;
+.w-28 {
+  width: 7rem;
 }
+
+h1 {
+  @apply scroll-m-20 text-4xl font-semibold tracking-tight;
+}
+
 /* h2 {
   @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
 } */
+
 h3 {
   @apply scroll-m-20 text-2xl font-semibold tracking-tight;
 }
+
 h4 {
   @apply scroll-m-20 text-xl font-semibold tracking-tight;
+}
+
+.clo {
+  @apply scroll-m-20 leading-8;
+}
+
+.learning-objective {
+  @apply font-semibold tracking-tight bg-white dark:bg-white/50 p-1 rounded-sm text-primary/70 dark:text-primary/90 relative;
+  transition: background-color 0.3s ease-out, color 0.3s ease;
+}
+
+.learning-objective.re {
+  @apply bg-blue-500/50;
+}
+
+.learning-objective.un {
+  @apply bg-teal-500/50;
+}
+
+.learning-objective.ap {
+  @apply bg-green-500/50;
+}
+
+.learning-objective.an {
+  @apply bg-yellow-500/50;
+}
+
+.learning-objective.ev {
+  @apply bg-orange-500/50;
+}
+
+.learning-objective.cr {
+  @apply bg-red-500/50;
+}
+
+.learning-objective.er {
+  @apply bg-transparent text-destructive;
+}
+
+.clos li:has(.er) {
+  text-decoration: underline;
+  text-decoration-color: red;
+  text-decoration-thickness: 2px;
+}
+
+.learning-topics {
+  @apply focus-visible:outline-none mb-4 font-medium text-lg text-primary/90 w-1/2;
+}
+
+.topic {
+  @apply min-h-[1rem] bg-secondary rounded-md overflow-hidden mb-2;
+}
+
+.topic span {
+  @apply inline-block bg-primary/50 px-2 py-1 rounded-br-sm mr-2;
+}
+
+.topic.remembering span {
+  @apply bg-blue-300/50;
+}
+
+.topic.understanding span {
+  @apply bg-yellow-300/50;
+}
+
+.topic.applying span {
+  @apply bg-green-300/50;
+}
+
+.topic.analyzing span {
+  @apply bg-blue-300/50;
+}
+
+.topic.evaluating span {
+  @apply bg-purple-300/50;
+}
+
+.topic.creating span {
+  @apply bg-red-300/50;
+}
+
+.builder-question:hover .editing-icons,
+.builder-question:focus-within .editing-icons {
+  @apply opacity-100;
+}
+
+/* .builder-question.loading::before {
+  @apply absolute inset-1 bg-red-50 animate-pulse rounded-md;
+  content: "";
+} */
+
+.topic-panel {
+  @apply border-b border-border pb-4;
+}
+
+.topic-title {
+  @apply text-xl font-semibold text-primary/90 rounded-md bg-secondary inline-block p-1 mb-4 mt-2;
+}
+
+.topic-title.Creating {
+  @apply bg-red-300/50;
+}
+
+.topic-title.Evaluating {
+  @apply bg-orange-300/50;
+}
+
+.topic-title.Analyzing {
+  @apply bg-yellow-300/50;
+}
+
+.topic-title.Applying {
+  @apply bg-green-300/50;
+}
+
+.topic-title.Understanding {
+  @apply bg-teal-300/50;
+}
+
+.topic-title.Remembering {
+  @apply bg-blue-300/50;
+}
+
+.topic-panel .topic {
+  @apply border border-border p-1 mx-2 bg-transparent;
 }

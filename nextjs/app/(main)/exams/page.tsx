@@ -1,7 +1,9 @@
-import DataTableBody from "@/components/DataTable/DataTableBody";
-import DataTableHeader from "@/components/DataTable/DataTableHeader";
-import DataTableItem from "@/components/DataTable/DataTableItem";
-import DataTableRow from "@/components/DataTable/DataTableRow";
+import {
+  DataTableBody,
+  DataTableHeader,
+  DataTableItem,
+  DataTableRow,
+} from "@/components/DataTable";
 import { ColumnWidth } from "@/enums";
 import { dbConnect } from "@/lib/db";
 import Course from "@/models/Course";
@@ -10,7 +12,7 @@ import User from "@/models/User";
 import { title } from "process";
 import moment from "moment";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 
 export default async function ExamsHome() {
   await dbConnect();
@@ -49,7 +51,11 @@ export default async function ExamsHome() {
 
   return (
     <>
-      <h1 className="ml-20 text-3xl font-semibold mb-8">{title}</h1>
+      <h1 className="ml-20 mb-8 flex items-center">
+        CSIT
+        <div className="w-1 h-7 rounded-sm bg-primary/20 mx-3" />
+        Information Technology
+      </h1>
 
       <DataTableHeader columns={columns} />
       <DataTableBody>
